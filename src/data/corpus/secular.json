@@ -1,0 +1,142 @@
+[
+  {
+    "id": "secular_1",
+    "reference": "Principle: Take your time and think",
+    "category": "Decision Making",
+    "text": "Take your time and think — Rushed decisions often lead to regret. Create space for reflection.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_2",
+    "reference": "Principle: Clarity > priority > focus > action",
+    "category": "Decision Making",
+    "text": "Clarity > priority > focus > action — First understand clearly, then prioritize, then focus, then act.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_3",
+    "reference": "Principle: Focus on what you can control",
+    "category": "Decision Making",
+    "text": "Focus on what you can control — Distinguish between what is within your power and what is not.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_4",
+    "reference": "Principle: Consider second-order effects",
+    "category": "Decision Making",
+    "text": "Consider second-order effects — Think about the consequences of consequences.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_5",
+    "reference": "Principle: You can do anything, but not everything at once",
+    "category": "Productivity",
+    "text": "You can do anything, but not everything at once — Choose deliberately what to focus on now.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_6",
+    "reference": "Principle: Small consistent steps compound",
+    "category": "Productivity",
+    "text": "Small consistent steps compound — Daily 1% improvements lead to 37x growth in a year.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_7",
+    "reference": "Principle: Action > patience > learn > win",
+    "category": "Productivity",
+    "text": "Action > patience > learn > win — Start with action, be patient with results, learn from feedback, eventually succeed.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_8",
+    "reference": "Principle: Energy management over time management",
+    "category": "Productivity",
+    "text": "Energy management over time management — Protect your energy; time without energy is wasted.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_9",
+    "reference": "Principle: Name it to tame it",
+    "category": "Emotional Regulation",
+    "text": "Name it to tame it — Labeling emotions reduces their intensity.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_10",
+    "reference": "Principle: Respond, don't react",
+    "category": "Emotional Regulation",
+    "text": "Respond, don't react — Create a gap between stimulus and response.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_11",
+    "reference": "Principle: This too shall pass",
+    "category": "Emotional Regulation",
+    "text": "This too shall pass — Both good and bad states are temporary.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_12",
+    "reference": "Principle: Feelings are data, not directives",
+    "category": "Emotional Regulation",
+    "text": "Feelings are data, not directives — Emotions provide information but don't require immediate action.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_13",
+    "reference": "Principle: Seek first to understand, then to be understood",
+    "category": "Relationships",
+    "text": "Seek first to understand, then to be understood — Listen before speaking.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_14",
+    "reference": "Principle: Assume positive intent",
+    "category": "Relationships",
+    "text": "Assume positive intent — Most people aren't trying to harm you.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_15",
+    "reference": "Principle: You can be right or you can be happy",
+    "category": "Relationships",
+    "text": "You can be right or you can be happy — Sometimes connection matters more than correctness.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_16",
+    "reference": "Principle: Boundaries are kindness",
+    "category": "Relationships",
+    "text": "Boundaries are kindness — Clear limits enable sustainable relationships.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_17",
+    "reference": "Principle: Embrace discomfort as growth",
+    "category": "Growth",
+    "text": "Embrace discomfort as growth — Growth happens at the edge of your comfort zone.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_18",
+    "reference": "Principle: Fail fast, learn faster",
+    "category": "Growth",
+    "text": "Fail fast, learn faster — Quick experiments with rapid feedback accelerate learning.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_19",
+    "reference": "Principle: Compare yourself to who you were yesterday",
+    "category": "Growth",
+    "text": "Compare yourself to who you were yesterday — The only meaningful comparison is with your past self.",
+    "source": "secular"
+  },
+  {
+    "id": "secular_20",
+    "reference": "Principle: What got you here won't get you there",
+    "category": "Growth",
+    "text": "What got you here won't get you there — New levels require new behaviors.",
+    "source": "secular"
+  }
+]
