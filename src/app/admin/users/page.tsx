@@ -90,8 +90,8 @@ export default function UsersPage() {
   useEffect(() => {
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      setFilteredUsers(users.filter(u => 
-        u.name?.toLowerCase().includes(query) || 
+      setFilteredUsers(users.filter(u =>
+        u.name?.toLowerCase().includes(query) ||
         u.email.toLowerCase().includes(query)
       ));
     } else {
@@ -104,7 +104,7 @@ export default function UsersPage() {
       setError("Email and password are required");
       return;
     }
-    
+
     setActionLoading(true);
     setError("");
 
@@ -135,7 +135,7 @@ export default function UsersPage() {
 
   const handleUpdateUser = async () => {
     if (!editUser) return;
-    
+
     setActionLoading(true);
     setError("");
 
@@ -169,7 +169,7 @@ export default function UsersPage() {
 
   const handleDeleteUser = async () => {
     if (!deleteUser) return;
-    
+
     setActionLoading(true);
     setError("");
 
@@ -211,11 +211,11 @@ export default function UsersPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Users</h1>
-          <p className="text-slate-400 mt-1">Manage user accounts and roles</p>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Users</h1>
+          <p className="text-muted-foreground mt-1">Manage user accounts and roles</p>
         </div>
         <Button
-          className="bg-emerald-500 hover:bg-emerald-600 text-white"
+          className="bg-primary hover:bg-primary/90 text-foreground"
           onClick={() => setShowCreate(true)}
         >
           <UserPlus className="w-4 h-4 mr-2" />
@@ -225,43 +225,43 @@ export default function UsersPage() {
 
       {/* Stats Cards */}
       <div className="grid gap-4 sm:grid-cols-3">
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-card/50 border-border">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-slate-700 rounded-lg">
-                <UsersIcon className="w-6 h-6 text-slate-400" />
+              <div className="p-3 bg-secondary rounded-lg">
+                <UsersIcon className="w-6 h-6 text-muted-foreground" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{users.length}</p>
-                <p className="text-sm text-slate-400">Total Users</p>
+                <p className="text-2xl font-bold text-foreground">{users.length}</p>
+                <p className="text-sm text-muted-foreground">Total Users</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        
-        <Card className="bg-slate-800/50 border-slate-700">
+
+        <Card className="bg-card/50 border-border">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-emerald-500/20 rounded-lg">
-                <Shield className="w-6 h-6 text-emerald-400" />
+              <div className="p-3 bg-primary/20 rounded-lg">
+                <Shield className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{adminCount}</p>
-                <p className="text-sm text-slate-400">Administrators</p>
+                <p className="text-2xl font-bold text-foreground">{adminCount}</p>
+                <p className="text-sm text-muted-foreground">Administrators</p>
               </div>
             </div>
           </CardContent>
         </Card>
-        
-        <Card className="bg-slate-800/50 border-slate-700">
+
+        <Card className="bg-card/50 border-border">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
               <div className="p-3 bg-blue-500/20 rounded-lg">
                 <User className="w-6 h-6 text-blue-400" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-white">{userCount}</p>
-                <p className="text-sm text-slate-400">Regular Users</p>
+                <p className="text-2xl font-bold text-foreground">{userCount}</p>
+                <p className="text-sm text-muted-foreground">Regular Users</p>
               </div>
             </div>
           </CardContent>
@@ -278,29 +278,29 @@ export default function UsersPage() {
       )}
 
       {success && (
-        <div className="flex items-center gap-3 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400">
+        <div className="flex items-center gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg text-primary">
           <CheckCircle className="w-5 h-5 flex-shrink-0" />
           <span>{success}</span>
         </div>
       )}
 
       {/* Users Table */}
-      <Card className="bg-slate-800/50 border-slate-700">
-        <CardHeader className="border-b border-slate-700">
+      <Card className="bg-card/50 border-border">
+        <CardHeader className="border-b border-border">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <CardTitle className="text-white">All Users</CardTitle>
-              <CardDescription className="text-slate-400">
+              <CardTitle className="text-foreground">All Users</CardTitle>
+              <CardDescription className="text-muted-foreground">
                 A list of all registered users in your system
               </CardDescription>
             </div>
             <div className="relative w-full sm:w-64">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
                 placeholder="Search users..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 h-9"
+                className="pl-9 bg-secondary/50 border-input text-foreground placeholder:text-muted-foreground h-9"
               />
             </div>
           </div>
@@ -308,19 +308,19 @@ export default function UsersPage() {
         <CardContent className="p-0">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16">
-              <Loader2 className="w-8 h-8 animate-spin text-emerald-400 mb-4" />
-              <p className="text-slate-400">Loading users...</p>
+              <Loader2 className="w-8 h-8 animate-spin text-primary mb-4" />
+              <p className="text-muted-foreground">Loading users...</p>
             </div>
           ) : filteredUsers.length === 0 ? (
             <div className="text-center py-16">
-              <div className="mx-auto w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
-                <UsersIcon className="w-8 h-8 text-slate-500" />
+              <div className="mx-auto w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4">
+                <UsersIcon className="w-8 h-8 text-muted-foreground" />
               </div>
-              <p className="text-slate-400 mb-2">
+              <p className="text-muted-foreground mb-2">
                 {searchQuery ? "No users match your search" : "No users found"}
               </p>
               {!searchQuery && (
-                <Button onClick={() => setShowCreate(true)} variant="link" className="text-emerald-400">
+                <Button onClick={() => setShowCreate(true)} variant="link" className="text-primary">
                   Create your first user
                 </Button>
               )}
@@ -329,41 +329,41 @@ export default function UsersPage() {
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-700 hover:bg-transparent">
-                    <TableHead className="text-slate-400 font-medium">User</TableHead>
-                    <TableHead className="text-slate-400 font-medium">Email</TableHead>
-                    <TableHead className="text-slate-400 font-medium">Role</TableHead>
-                    <TableHead className="text-slate-400 font-medium hidden sm:table-cell">Created</TableHead>
-                    <TableHead className="text-slate-400 font-medium text-right">Actions</TableHead>
+                  <TableRow className="border-border hover:bg-transparent">
+                    <TableHead className="text-muted-foreground font-medium">User</TableHead>
+                    <TableHead className="text-muted-foreground font-medium">Email</TableHead>
+                    <TableHead className="text-muted-foreground font-medium">Role</TableHead>
+                    <TableHead className="text-muted-foreground font-medium hidden sm:table-cell">Created</TableHead>
+                    <TableHead className="text-muted-foreground font-medium text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {filteredUsers.map((user) => (
-                    <TableRow key={user.id} className="border-slate-700/50 hover:bg-slate-700/30 group">
-                      <TableCell className="font-medium text-white">
+                    <TableRow key={user.id} className="border-border/50 hover:bg-secondary/30 group">
+                      <TableCell className="font-medium text-foreground">
                         <div className="flex items-center gap-3">
                           <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                            user.role === "admin" 
-                              ? "bg-emerald-500/20" 
-                              : "bg-slate-700"
+                            user.role === "admin"
+                              ? "bg-primary/20"
+                              : "bg-secondary"
                           }`}>
                             {user.role === "admin" ? (
-                              <Shield className="w-5 h-5 text-emerald-400" />
+                              <Shield className="w-5 h-5 text-primary" />
                             ) : (
-                              <User className="w-5 h-5 text-slate-400" />
+                              <User className="w-5 h-5 text-muted-foreground" />
                             )}
                           </div>
                           <div>
-                            <p className="font-medium text-white">
+                            <p className="font-medium text-foreground">
                               {user.name || "Unnamed"}
                             </p>
-                            <p className="text-xs text-slate-500 sm:hidden">{user.email}</p>
+                            <p className="text-xs text-muted-foreground sm:hidden">{user.email}</p>
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-slate-300 hidden sm:table-cell">
+                      <TableCell className="text-muted-foreground hidden sm:table-cell">
                         <div className="flex items-center gap-2">
-                          <Mail className="w-4 h-4 text-slate-500" />
+                          <Mail className="w-4 h-4 text-muted-foreground" />
                           {user.email}
                         </div>
                       </TableCell>
@@ -372,16 +372,16 @@ export default function UsersPage() {
                           variant="secondary"
                           className={
                             user.role === "admin"
-                              ? "bg-emerald-500/20 text-emerald-400 border-0"
-                              : "bg-slate-500/20 text-slate-400 border-0"
+                              ? "bg-primary/20 text-primary border-0"
+                              : "bg-muted/20 text-muted-foreground border-0"
                           }
                         >
                           {user.role}
                         </Badge>
                       </TableCell>
-                      <TableCell className="text-slate-400 hidden sm:table-cell">
+                      <TableCell className="text-muted-foreground hidden sm:table-cell">
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-slate-500" />
+                          <Calendar className="w-4 h-4 text-muted-foreground" />
                           {formatDate(user.created_at)}
                         </div>
                       </TableCell>
@@ -390,7 +390,7 @@ export default function UsersPage() {
                           <Button
                             variant="ghost"
                             size="icon"
-                            className="h-8 w-8 text-slate-400 hover:text-white hover:bg-slate-700"
+                            className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-secondary"
                             onClick={() => {
                               setEditUser(user);
                               setShowEdit(true);
@@ -422,68 +422,68 @@ export default function UsersPage() {
 
       {/* Create User Dialog */}
       <Dialog open={showCreate} onOpenChange={setShowCreate}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-md">
+        <DialogContent className="bg-card border-border max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl flex items-center gap-2">
-              <UserPlus className="w-5 h-5 text-emerald-400" />
+            <DialogTitle className="text-foreground text-xl flex items-center gap-2">
+              <UserPlus className="w-5 h-5 text-primary" />
               Create User
             </DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogDescription className="text-muted-foreground">
               Add a new user account to the system
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label className="text-slate-200">Name</Label>
+              <Label className="text-foreground">Name</Label>
               <Input
                 value={newUser.name}
                 onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
                 placeholder="John Doe"
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Email *</Label>
+              <Label className="text-foreground">Email *</Label>
               <Input
                 type="email"
                 value={newUser.email}
                 onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
                 placeholder="john@example.com"
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Password *</Label>
+              <Label className="text-foreground">Password *</Label>
               <Input
                 type="password"
                 value={newUser.password}
                 onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
                 placeholder="••••••••"
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
-              <p className="text-xs text-slate-500">Minimum 6 characters</p>
+              <p className="text-xs text-muted-foreground">Minimum 6 characters</p>
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Role</Label>
+              <Label className="text-foreground">Role</Label>
               <Select
                 value={newUser.role}
                 onValueChange={(value: "user" | "admin") =>
                   setNewUser({ ...newUser, role: value })
                 }
               >
-                <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="user" className="text-white focus:bg-slate-700">
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="user" className="text-foreground focus:bg-secondary">
                     <div className="flex items-center gap-2">
-                      <User className="w-4 h-4 text-slate-400" />
+                      <User className="w-4 h-4 text-muted-foreground" />
                       User
                     </div>
                   </SelectItem>
-                  <SelectItem value="admin" className="text-white focus:bg-slate-700">
+                  <SelectItem value="admin" className="text-foreground focus:bg-secondary">
                     <div className="flex items-center gap-2">
-                      <Shield className="w-4 h-4 text-emerald-400" />
+                      <Shield className="w-4 h-4 text-primary" />
                       Admin
                     </div>
                   </SelectItem>
@@ -495,14 +495,14 @@ export default function UsersPage() {
             <Button
               variant="outline"
               onClick={() => setShowCreate(false)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="border-input text-muted-foreground hover:bg-secondary"
             >
               Cancel
             </Button>
             <Button
               onClick={handleCreateUser}
               disabled={actionLoading || !newUser.email || !newUser.password}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? (
                 <>
@@ -522,53 +522,53 @@ export default function UsersPage() {
 
       {/* Edit User Dialog */}
       <Dialog open={showEdit} onOpenChange={setShowEdit}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-md">
+        <DialogContent className="bg-card border-border max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl">Edit User</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground text-xl">Edit User</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               Modify user account details
             </DialogDescription>
           </DialogHeader>
           {editUser && (
             <div className="space-y-4 py-4">
               <div className="space-y-2">
-                <Label className="text-slate-200">Name</Label>
+                <Label className="text-foreground">Name</Label>
                 <Input
                   value={editUser.name || ""}
                   onChange={(e) => setEditUser({ ...editUser, name: e.target.value })}
-                  className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                  className="bg-secondary/50 border-input text-foreground focus:border-ring"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-200">Email</Label>
+                <Label className="text-foreground">Email</Label>
                 <Input
                   type="email"
                   value={editUser.email}
                   onChange={(e) => setEditUser({ ...editUser, email: e.target.value })}
-                  className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                  className="bg-secondary/50 border-input text-foreground focus:border-ring"
                 />
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-200">Role</Label>
+                <Label className="text-foreground">Role</Label>
                 <Select
                   value={editUser.role}
                   onValueChange={(value: "user" | "admin") =>
                     setEditUser({ ...editUser, role: value })
                   }
                 >
-                  <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                  <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-800 border-slate-700">
-                    <SelectItem value="user" className="text-white focus:bg-slate-700">
+                  <SelectContent className="bg-card border-border">
+                    <SelectItem value="user" className="text-foreground focus:bg-secondary">
                       <div className="flex items-center gap-2">
-                        <User className="w-4 h-4 text-slate-400" />
+                        <User className="w-4 h-4 text-muted-foreground" />
                         User
                       </div>
                     </SelectItem>
-                    <SelectItem value="admin" className="text-white focus:bg-slate-700">
+                    <SelectItem value="admin" className="text-foreground focus:bg-secondary">
                       <div className="flex items-center gap-2">
-                        <Shield className="w-4 h-4 text-emerald-400" />
+                        <Shield className="w-4 h-4 text-primary" />
                         Admin
                       </div>
                     </SelectItem>
@@ -581,14 +581,14 @@ export default function UsersPage() {
             <Button
               variant="outline"
               onClick={() => setShowEdit(false)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="border-input text-muted-foreground hover:bg-secondary"
             >
               Cancel
             </Button>
             <Button
               onClick={handleUpdateUser}
               disabled={actionLoading}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? (
                 <>
@@ -605,10 +605,10 @@ export default function UsersPage() {
 
       {/* Delete User Dialog */}
       <Dialog open={showDelete} onOpenChange={setShowDelete}>
-        <DialogContent className="bg-slate-800 border-slate-700">
+        <DialogContent className="bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-white">Delete User</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground">Delete User</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               Are you sure you want to delete this user? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
@@ -616,17 +616,17 @@ export default function UsersPage() {
             <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
               <div className="flex items-center gap-3">
                 <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                  deleteUser.role === "admin" ? "bg-emerald-500/20" : "bg-slate-700"
+                  deleteUser.role === "admin" ? "bg-primary/20" : "bg-secondary"
                 }`}>
                   {deleteUser.role === "admin" ? (
-                    <Shield className="w-5 h-5 text-emerald-400" />
+                    <Shield className="w-5 h-5 text-primary" />
                   ) : (
-                    <User className="w-5 h-5 text-slate-400" />
+                    <User className="w-5 h-5 text-muted-foreground" />
                   )}
                 </div>
                 <div>
-                  <p className="text-white font-medium">{deleteUser.name || "Unnamed"}</p>
-                  <p className="text-slate-400 text-sm">{deleteUser.email}</p>
+                  <p className="text-foreground font-medium">{deleteUser.name || "Unnamed"}</p>
+                  <p className="text-muted-foreground text-sm">{deleteUser.email}</p>
                 </div>
               </div>
             </div>
@@ -635,7 +635,7 @@ export default function UsersPage() {
             <Button
               variant="outline"
               onClick={() => setShowDelete(false)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="border-input text-muted-foreground hover:bg-secondary"
             >
               Cancel
             </Button>

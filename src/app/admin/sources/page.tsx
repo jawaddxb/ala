@@ -63,7 +63,7 @@ const sourceTypes = [
 ];
 
 const sourceStyles: Record<string, { bg: string; text: string; border: string }> = {
-  quran: { bg: "bg-emerald-500/20", text: "text-emerald-400", border: "border-emerald-500/30" },
+  quran: { bg: "bg-primary/20", text: "text-primary", border: "border-primary/30" },
   bible: { bg: "bg-blue-500/20", text: "text-blue-400", border: "border-blue-500/30" },
   hadith_bukhari: { bg: "bg-amber-500/20", text: "text-amber-400", border: "border-amber-500/30" },
   hadith_muslim: { bg: "bg-orange-500/20", text: "text-orange-400", border: "border-orange-500/30" },
@@ -73,7 +73,7 @@ const sourceStyles: Record<string, { bg: string; text: string; border: string }>
 export default function SourcesPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  
+
   const [sources, setSources] = useState<Source[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -90,7 +90,7 @@ export default function SourcesPage() {
   const [importStatus, setImportStatus] = useState<{ success?: number; failed?: number; error?: string } | null>(null);
   const [actionLoading, setActionLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  
+
   const limit = 20;
 
   // Debounce search
@@ -239,22 +239,22 @@ export default function SourcesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Sources</h1>
-          <p className="text-slate-400 mt-1">
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Sources</h1>
+          <p className="text-muted-foreground mt-1">
             Browse and manage your corpus data
           </p>
         </div>
         <div className="flex gap-2">
           <Button
             variant="outline"
-            className="border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
+            className="border-input text-muted-foreground hover:bg-secondary hover:text-foreground"
             onClick={() => setShowImport(true)}
           >
             <Upload className="w-4 h-4 mr-2" />
             Import
           </Button>
           <Button
-            className="bg-emerald-500 hover:bg-emerald-600 text-white"
+            className="bg-primary hover:bg-primary/90 text-foreground"
             onClick={() => {
               setEditSource({
                 id: `new_${Date.now()}`,
@@ -272,13 +272,13 @@ export default function SourcesPage() {
       </div>
 
       {/* Search & Filters */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardContent className="pt-6">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search Input */}
             <div className="flex-1">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                 <Input
                   placeholder="Search sources by text or reference..."
                   value={search}
@@ -286,32 +286,32 @@ export default function SourcesPage() {
                     setSearch(e.target.value);
                     setPage(1);
                   }}
-                  className="pl-10 h-11 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
+                  className="pl-10 h-11 bg-secondary/50 border-input text-foreground placeholder:text-muted-foreground focus:border-ring focus:ring-ring/20"
                 />
                 {search && (
-                  <button 
+                  <button
                     onClick={() => setSearch("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   >
                     <X className="w-4 h-4" />
                   </button>
                 )}
               </div>
             </div>
-            
+
             {/* Source Type Filter */}
             <div className="flex gap-2">
               <Select value={sourceType} onValueChange={handleSourceTypeChange}>
-                <SelectTrigger className="w-[200px] h-11 bg-slate-700/50 border-slate-600 text-white">
-                  <Filter className="w-4 h-4 mr-2 text-slate-400" />
+                <SelectTrigger className="w-[200px] h-11 bg-secondary/50 border-input text-foreground">
+                  <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
                   <SelectValue placeholder="Filter by source" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {sourceTypes.map((type) => (
                     <SelectItem
                       key={type.value}
                       value={type.value}
-                      className="text-white focus:bg-slate-700 focus:text-white"
+                      className="text-foreground focus:bg-secondary focus:text-foreground"
                     >
                       <span className="flex items-center gap-2">
                         {type.label}
@@ -320,12 +320,12 @@ export default function SourcesPage() {
                   ))}
                 </SelectContent>
               </Select>
-              
+
               {hasFilters && (
                 <Button
                   variant="ghost"
                   onClick={clearFilters}
-                  className="text-slate-400 hover:text-white hover:bg-slate-700"
+                  className="text-muted-foreground hover:text-foreground hover:bg-secondary"
                 >
                   <X className="w-4 h-4 mr-1" />
                   Clear
@@ -333,18 +333,18 @@ export default function SourcesPage() {
               )}
             </div>
           </div>
-          
+
           {/* Active Filters Display */}
           {hasFilters && (
-            <div className="flex items-center gap-2 mt-4 pt-4 border-t border-slate-700/50">
-              <span className="text-sm text-slate-500">Active filters:</span>
+            <div className="flex items-center gap-2 mt-4 pt-4 border-t border-border/50">
+              <span className="text-sm text-muted-foreground">Active filters:</span>
               {sourceType !== "all" && (
-                <Badge variant="secondary" className={`${sourceStyles[sourceType]?.bg || 'bg-slate-500/20'} ${sourceStyles[sourceType]?.text || 'text-slate-400'} border-0`}>
+                <Badge variant="secondary" className={`${sourceStyles[sourceType]?.bg || 'bg-muted/50'} ${sourceStyles[sourceType]?.text || 'text-muted-foreground'} border-0`}>
                   {currentSourceType?.label}
                 </Badge>
               )}
               {search && (
-                <Badge variant="secondary" className="bg-slate-500/20 text-slate-400 border-0">
+                <Badge variant="secondary" className="bg-muted/50 text-muted-foreground border-0">
                   &quot;{search}&quot;
                 </Badge>
               )}
@@ -355,10 +355,10 @@ export default function SourcesPage() {
 
       {/* Results Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <p className="text-slate-400">
-          <span className="text-white font-medium">{total.toLocaleString()}</span> sources found
+        <p className="text-muted-foreground">
+          <span className="text-foreground font-medium">{total.toLocaleString()}</span> sources found
         </p>
-        
+
         {/* Pagination */}
         <div className="flex items-center gap-2">
           <Button
@@ -366,19 +366,19 @@ export default function SourcesPage() {
             size="sm"
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="border-slate-600 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+            className="border-input text-muted-foreground hover:bg-secondary disabled:opacity-50"
           >
             <ChevronLeft className="w-4 h-4" />
           </Button>
-          <span className="text-sm text-slate-400 min-w-[100px] text-center">
-            Page <span className="text-white">{page}</span> of <span className="text-white">{totalPages || 1}</span>
+          <span className="text-sm text-muted-foreground min-w-[100px] text-center">
+            Page <span className="text-foreground">{page}</span> of <span className="text-foreground">{totalPages || 1}</span>
           </span>
           <Button
             variant="outline"
             size="sm"
             disabled={page >= totalPages}
             onClick={() => setPage(page + 1)}
-            className="border-slate-600 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+            className="border-input text-muted-foreground hover:bg-secondary disabled:opacity-50"
           >
             <ChevronRight className="w-4 h-4" />
           </Button>
@@ -388,28 +388,28 @@ export default function SourcesPage() {
       {/* Results */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-16">
-          <Loader2 className="w-10 h-10 animate-spin text-emerald-400 mb-4" />
-          <p className="text-slate-400">Loading sources...</p>
+          <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+          <p className="text-muted-foreground">Loading sources...</p>
         </div>
       ) : sources.length === 0 ? (
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-card/50 border-border">
           <CardContent className="py-16 text-center">
-            <div className="mx-auto w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
-              <FileText className="w-8 h-8 text-slate-500" />
+            <div className="mx-auto w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4">
+              <FileText className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-medium text-white mb-2">No sources found</h3>
-            <p className="text-slate-400 mb-6 max-w-sm mx-auto">
-              {hasFilters 
+            <h3 className="text-lg font-medium text-foreground mb-2">No sources found</h3>
+            <p className="text-muted-foreground mb-6 max-w-sm mx-auto">
+              {hasFilters
                 ? "Try adjusting your search or filters to find what you're looking for."
                 : "Your corpus is empty. Import some data to get started."
               }
             </p>
             {hasFilters ? (
-              <Button onClick={clearFilters} variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-700">
+              <Button onClick={clearFilters} variant="outline" className="border-input text-muted-foreground hover:bg-secondary">
                 Clear filters
               </Button>
             ) : (
-              <Button onClick={() => setShowImport(true)} className="bg-emerald-500 hover:bg-emerald-600">
+              <Button onClick={() => setShowImport(true)} className="bg-primary hover:bg-primary/90">
                 <Upload className="w-4 h-4 mr-2" />
                 Import Sources
               </Button>
@@ -419,12 +419,12 @@ export default function SourcesPage() {
       ) : (
         <div className="grid gap-4">
           {sources.map((source) => {
-            const style = sourceStyles[source.source] || { bg: "bg-slate-500/20", text: "text-slate-400", border: "border-slate-500/30" };
-            
+            const style = sourceStyles[source.source] || { bg: "bg-muted/50", text: "text-muted-foreground", border: "border-border/50" };
+
             return (
               <Card
                 key={source.id}
-                className={`bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-all duration-200 group`}
+                className={`bg-card/50 border-border hover:border-input transition-all duration-200 group`}
               >
                 <CardHeader className="pb-3">
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
@@ -437,12 +437,12 @@ export default function SourcesPage() {
                           {source.source.replace("_", " ")}
                         </Badge>
                         {source.category && (
-                          <Badge variant="secondary" className="bg-slate-700/50 text-slate-400 border-0 text-xs">
+                          <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground border-0 text-xs">
                             {source.category}
                           </Badge>
                         )}
                       </div>
-                      <CardTitle className="text-lg text-white font-medium">
+                      <CardTitle className="text-lg text-foreground font-medium">
                         {source.reference}
                       </CardTitle>
                     </div>
@@ -450,11 +450,11 @@ export default function SourcesPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 text-slate-400 hover:text-white hover:bg-slate-700"
+                        className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-secondary"
                         onClick={() => copyToClipboard(source.text, source.id)}
                       >
                         {copiedId === source.id ? (
-                          <CheckCircle className="w-4 h-4 text-emerald-400" />
+                          <CheckCircle className="w-4 h-4 text-primary" />
                         ) : (
                           <Copy className="w-4 h-4" />
                         )}
@@ -462,7 +462,7 @@ export default function SourcesPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 text-slate-400 hover:text-white hover:bg-slate-700"
+                        className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-secondary"
                         onClick={() => {
                           setEditSource(source);
                           setShowEdit(true);
@@ -485,10 +485,10 @@ export default function SourcesPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+                  <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
                     {source.text.length > 500 ? `${source.text.slice(0, 500)}...` : source.text}
                   </p>
-                  <p className="text-xs text-slate-500 mt-3 font-mono">ID: {source.id}</p>
+                  <p className="text-xs text-muted-foreground mt-3 font-mono">ID: {source.id}</p>
                 </CardContent>
               </Card>
             );
@@ -505,12 +505,12 @@ export default function SourcesPage() {
               size="sm"
               disabled={page === 1}
               onClick={() => setPage(page - 1)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+              className="border-input text-muted-foreground hover:bg-secondary disabled:opacity-50"
             >
               <ChevronLeft className="w-4 h-4 mr-1" />
               Previous
             </Button>
-            <span className="text-sm text-slate-400 px-4">
+            <span className="text-sm text-muted-foreground px-4">
               Page {page} of {totalPages}
             </span>
             <Button
@@ -518,7 +518,7 @@ export default function SourcesPage() {
               size="sm"
               disabled={page >= totalPages}
               onClick={() => setPage(page + 1)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700 disabled:opacity-50"
+              className="border-input text-muted-foreground hover:bg-secondary disabled:opacity-50"
             >
               Next
               <ChevronRight className="w-4 h-4 ml-1" />
@@ -529,12 +529,12 @@ export default function SourcesPage() {
 
       {/* Edit Dialog */}
       <Dialog open={showEdit} onOpenChange={setShowEdit}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-card border-border max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl">
+            <DialogTitle className="text-foreground text-xl">
               {editSource?.id.startsWith("new_") ? "Add New Source" : "Edit Source"}
             </DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogDescription className="text-muted-foreground">
               {editSource?.id.startsWith("new_")
                 ? "Create a new source entry in your corpus"
                 : "Modify the source entry details"}
@@ -544,33 +544,33 @@ export default function SourcesPage() {
             <div className="space-y-6 py-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-slate-200">Reference *</Label>
+                  <Label className="text-foreground">Reference *</Label>
                   <Input
                     value={editSource.reference}
                     onChange={(e) =>
                       setEditSource({ ...editSource, reference: e.target.value })
                     }
                     placeholder="e.g., Quran 2:255"
-                    className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                    className="bg-secondary/50 border-input text-foreground focus:border-ring"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-slate-200">Source Type *</Label>
+                  <Label className="text-foreground">Source Type *</Label>
                   <Select
                     value={editSource.source}
                     onValueChange={(value) =>
                       setEditSource({ ...editSource, source: value })
                     }
                   >
-                    <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                    <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                       <SelectValue />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-slate-700">
+                    <SelectContent className="bg-card border-border">
                       {sourceTypes.slice(1).map((type) => (
                         <SelectItem
                           key={type.value}
                           value={type.value}
-                          className="text-white focus:bg-slate-700"
+                          className="text-foreground focus:bg-secondary"
                         >
                           <span className="flex items-center gap-2">
                             {type.label}
@@ -582,7 +582,7 @@ export default function SourcesPage() {
                 </div>
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-200">Text Content *</Label>
+                <Label className="text-foreground">Text Content *</Label>
                 <Textarea
                   value={editSource.text}
                   onChange={(e) =>
@@ -590,23 +590,23 @@ export default function SourcesPage() {
                   }
                   placeholder="The text content of this source..."
                   rows={8}
-                  className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500 resize-none"
+                  className="bg-secondary/50 border-input text-foreground focus:border-ring resize-none"
                 />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-slate-200">Book</Label>
+                  <Label className="text-foreground">Book</Label>
                   <Input
                     value={editSource.book || ""}
                     onChange={(e) =>
                       setEditSource({ ...editSource, book: e.target.value })
                     }
                     placeholder="Optional"
-                    className="bg-slate-700/50 border-slate-600 text-white"
+                    className="bg-secondary/50 border-input text-foreground"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-slate-200">Chapter</Label>
+                  <Label className="text-foreground">Chapter</Label>
                   <Input
                     type="number"
                     value={editSource.chapter || ""}
@@ -617,11 +617,11 @@ export default function SourcesPage() {
                       })
                     }
                     placeholder="Optional"
-                    className="bg-slate-700/50 border-slate-600 text-white"
+                    className="bg-secondary/50 border-input text-foreground"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-slate-200">Verse</Label>
+                  <Label className="text-foreground">Verse</Label>
                   <Input
                     type="number"
                     value={editSource.verse || ""}
@@ -632,7 +632,7 @@ export default function SourcesPage() {
                       })
                     }
                     placeholder="Optional"
-                    className="bg-slate-700/50 border-slate-600 text-white"
+                    className="bg-secondary/50 border-input text-foreground"
                   />
                 </div>
               </div>
@@ -642,14 +642,14 @@ export default function SourcesPage() {
             <Button
               variant="outline"
               onClick={() => setShowEdit(false)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="border-input text-muted-foreground hover:bg-secondary"
             >
               Cancel
             </Button>
             <Button
               onClick={handleSaveSource}
               disabled={actionLoading || !editSource?.reference || !editSource?.text}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? (
                 <>
@@ -666,17 +666,17 @@ export default function SourcesPage() {
 
       {/* Delete Dialog */}
       <Dialog open={showDelete} onOpenChange={setShowDelete}>
-        <DialogContent className="bg-slate-800 border-slate-700">
+        <DialogContent className="bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-white">Delete Source</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground">Delete Source</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               Are you sure you want to delete this source? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           {deleteSource && (
             <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg space-y-2">
-              <p className="text-white font-medium">{deleteSource.reference}</p>
-              <p className="text-slate-400 text-sm line-clamp-3">
+              <p className="text-foreground font-medium">{deleteSource.reference}</p>
+              <p className="text-muted-foreground text-sm line-clamp-3">
                 {deleteSource.text}
               </p>
             </div>
@@ -685,7 +685,7 @@ export default function SourcesPage() {
             <Button
               variant="outline"
               onClick={() => setShowDelete(false)}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="border-input text-muted-foreground hover:bg-secondary"
             >
               Cancel
             </Button>
@@ -712,13 +712,13 @@ export default function SourcesPage() {
 
       {/* Import Dialog */}
       <Dialog open={showImport} onOpenChange={setShowImport}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="bg-card border-border max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl flex items-center gap-2">
-              <Upload className="w-5 h-5 text-emerald-400" />
+            <DialogTitle className="text-foreground text-xl flex items-center gap-2">
+              <Upload className="w-5 h-5 text-primary" />
               Import Sources
             </DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogDescription className="text-muted-foreground">
               Paste JSON data to bulk import sources into your corpus
             </DialogDescription>
           </DialogHeader>
@@ -730,7 +730,7 @@ export default function SourcesPage() {
               </div>
             )}
             {importStatus?.success !== undefined && (
-              <div className="flex items-center gap-3 p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-400">
+              <div className="flex items-center gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg text-primary">
                 <CheckCircle className="w-5 h-5 flex-shrink-0" />
                 <span>
                   Successfully imported <strong>{importStatus.success}</strong> sources
@@ -739,7 +739,7 @@ export default function SourcesPage() {
               </div>
             )}
             <div className="space-y-2">
-              <Label className="text-slate-200">JSON Data</Label>
+              <Label className="text-foreground">JSON Data</Label>
               <Textarea
                 value={importJson}
                 onChange={(e) => setImportJson(e.target.value)}
@@ -752,9 +752,9 @@ export default function SourcesPage() {
   }
 ]`}
                 rows={14}
-                className="bg-slate-900/50 border-slate-600 text-white font-mono text-sm resize-none focus:border-emerald-500"
+                className="bg-muted border-input text-foreground font-mono text-sm resize-none focus:border-ring"
               />
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-muted-foreground">
                 Required fields: id, reference, text, source. Optional: book, chapter, verse, number, category
               </p>
             </div>
@@ -767,14 +767,14 @@ export default function SourcesPage() {
                 setImportJson("");
                 setImportStatus(null);
               }}
-              className="border-slate-600 text-slate-300 hover:bg-slate-700"
+              className="border-input text-muted-foreground hover:bg-secondary"
             >
               Cancel
             </Button>
             <Button
               onClick={handleImport}
               disabled={actionLoading || !importJson.trim()}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? (
                 <>

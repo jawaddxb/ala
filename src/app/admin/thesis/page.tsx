@@ -55,7 +55,7 @@ const confidenceColors: Record<string, string> = {
   working_theory: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
   leaning: "bg-blue-500/20 text-blue-400 border-blue-500/30",
   firm: "bg-green-500/20 text-green-400 border-green-500/30",
-  absolute: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+  absolute: "bg-primary/20 text-primary border-primary/30",
 };
 
 const confidenceLabels: Record<string, string> = {
@@ -182,11 +182,11 @@ export default function ThesisPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Thesis Vault</h1>
-          <p className="text-slate-400 mt-1">Define worldview positions by category</p>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Thesis Vault</h1>
+          <p className="text-muted-foreground mt-1">Define worldview positions by category</p>
         </div>
         <Button
-          className="bg-emerald-500 hover:bg-emerald-600 text-white"
+          className="bg-primary hover:bg-primary/90 text-foreground"
           onClick={() => setShowAdd(true)}
         >
           <Plus className="w-4 h-4 mr-2" />
@@ -196,10 +196,10 @@ export default function ThesisPage() {
 
       {/* Category Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-slate-800/50 border border-slate-700 flex-wrap h-auto p-1">
+        <TabsList className="bg-card/50 border border-border flex-wrap h-auto p-1">
           <TabsTrigger
             value="all"
-            className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400"
+            className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
           >
             All
           </TabsTrigger>
@@ -207,7 +207,7 @@ export default function ThesisPage() {
             <TabsTrigger
               key={cat.id}
               value={cat.id}
-              className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400"
+              className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
             >
               {cat.name}
             </TabsTrigger>
@@ -218,18 +218,18 @@ export default function ThesisPage() {
       {/* Entries Grid */}
       {loading ? (
         <div className="flex flex-col items-center justify-center py-16">
-          <Loader2 className="w-10 h-10 animate-spin text-emerald-400 mb-4" />
-          <p className="text-slate-400">Loading thesis entries...</p>
+          <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+          <p className="text-muted-foreground">Loading thesis entries...</p>
         </div>
       ) : filtered.length === 0 ? (
-        <Card className="bg-slate-800/50 border-slate-700">
+        <Card className="bg-card/50 border-border">
           <CardContent className="py-16 text-center">
-            <div className="mx-auto w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
-              <Lightbulb className="w-8 h-8 text-slate-500" />
+            <div className="mx-auto w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4">
+              <Lightbulb className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-medium text-white mb-2">No entries yet</h3>
-            <p className="text-slate-400 mb-6">Add your first thesis entry to define a position.</p>
-            <Button onClick={() => setShowAdd(true)} className="bg-emerald-500 hover:bg-emerald-600">
+            <h3 className="text-lg font-medium text-foreground mb-2">No entries yet</h3>
+            <p className="text-muted-foreground mb-6">Add your first thesis entry to define a position.</p>
+            <Button onClick={() => setShowAdd(true)} className="bg-primary hover:bg-primary/90">
               <Plus className="w-4 h-4 mr-2" />
               Add Entry
             </Button>
@@ -242,28 +242,28 @@ export default function ThesisPage() {
 
             if (isEditing) {
               return (
-                <Card key={entry.id} className="bg-slate-800 border-emerald-500/50">
+                <Card key={entry.id} className="bg-card border-primary/50">
                   <CardContent className="pt-6 space-y-4">
                     <div className="space-y-2">
-                      <Label className="text-slate-200">Title</Label>
+                      <Label className="text-foreground">Title</Label>
                       <Input
                         value={editForm.title || ""}
                         onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
-                        className="bg-slate-700/50 border-slate-600 text-white"
+                        className="bg-secondary/50 border-input text-foreground"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-200">Category</Label>
+                      <Label className="text-foreground">Category</Label>
                       <Select
                         value={editForm.category}
                         onValueChange={(v) => setEditForm({ ...editForm, category: v })}
                       >
-                        <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                        <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-700">
+                        <SelectContent className="bg-card border-border">
                           {categories.map((cat) => (
-                            <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
+                            <SelectItem key={cat.id} value={cat.id} className="text-foreground focus:bg-secondary focus:text-foreground">
                               {cat.name}
                             </SelectItem>
                           ))}
@@ -271,26 +271,26 @@ export default function ThesisPage() {
                       </Select>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-200">Stance</Label>
+                      <Label className="text-foreground">Stance</Label>
                       <Textarea
                         value={editForm.stance || ""}
                         onChange={(e) => setEditForm({ ...editForm, stance: e.target.value })}
                         rows={4}
-                        className="bg-slate-700/50 border-slate-600 text-white resize-none"
+                        className="bg-secondary/50 border-input text-foreground resize-none"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-slate-200">Confidence</Label>
+                      <Label className="text-foreground">Confidence</Label>
                       <Select
                         value={editForm.confidence}
                         onValueChange={(v) => setEditForm({ ...editForm, confidence: v as ThesisEntry["confidence"] })}
                       >
-                        <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                        <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent className="bg-slate-800 border-slate-700">
+                        <SelectContent className="bg-card border-border">
                           {Object.entries(confidenceLabels).map(([val, label]) => (
-                            <SelectItem key={val} value={val} className="text-white focus:bg-slate-700 focus:text-white">
+                            <SelectItem key={val} value={val} className="text-foreground focus:bg-secondary focus:text-foreground">
                               {label}
                             </SelectItem>
                           ))}
@@ -302,7 +302,7 @@ export default function ThesisPage() {
                         size="sm"
                         onClick={() => handleUpdate(entry.id)}
                         disabled={actionLoading}
-                        className="bg-emerald-500 hover:bg-emerald-600"
+                        className="bg-primary hover:bg-primary/90"
                       >
                         {actionLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4 mr-1" />}
                         Save
@@ -311,7 +311,7 @@ export default function ThesisPage() {
                         size="sm"
                         variant="outline"
                         onClick={() => { setEditingId(null); setEditForm({}); }}
-                        className="border-slate-600 text-slate-300 hover:bg-slate-700"
+                        className="border-input text-muted-foreground hover:bg-secondary"
                       >
                         <X className="w-4 h-4 mr-1" />
                         Cancel
@@ -325,21 +325,21 @@ export default function ThesisPage() {
             return (
               <Card
                 key={entry.id}
-                className={`bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-all cursor-pointer group ${
+                className={`bg-card/50 border-border hover:border-input transition-all cursor-pointer group ${
                   !entry.is_active ? "opacity-50" : ""
                 }`}
                 onClick={() => startEditing(entry)}
               >
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-lg text-white font-medium leading-tight">
+                    <CardTitle className="text-lg text-foreground font-medium leading-tight">
                       {entry.title}
                     </CardTitle>
                     <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-7 w-7 text-slate-400 hover:text-white hover:bg-slate-700"
+                        className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-secondary"
                         onClick={(e) => {
                           e.stopPropagation();
                           startEditing(entry);
@@ -365,7 +365,7 @@ export default function ThesisPage() {
                     <Badge variant="secondary" className={`${confidenceColors[entry.confidence]} border-0 text-xs`}>
                       {confidenceLabels[entry.confidence]}
                     </Badge>
-                    <Badge variant="secondary" className="bg-slate-700/50 text-slate-400 border-0 text-xs">
+                    <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground border-0 text-xs">
                       {categories.find((c) => c.id === entry.category)?.name || entry.category}
                     </Badge>
                     <button
@@ -375,8 +375,8 @@ export default function ThesisPage() {
                       }}
                       className={`text-xs px-2 py-0.5 rounded-full transition-colors ${
                         entry.is_active
-                          ? "bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
-                          : "bg-slate-700/50 text-slate-500 hover:bg-slate-700"
+                          ? "bg-primary/20 text-primary hover:bg-primary/30"
+                          : "bg-secondary/50 text-muted-foreground hover:bg-secondary"
                       }`}
                     >
                       {entry.is_active ? "Active" : "Inactive"}
@@ -384,7 +384,7 @@ export default function ThesisPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-slate-300 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {entry.stance.length > 150 ? `${entry.stance.slice(0, 150)}...` : entry.stance}
                   </p>
                 </CardContent>
@@ -396,23 +396,23 @@ export default function ThesisPage() {
 
       {/* Add Dialog */}
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-lg">
+        <DialogContent className="bg-card border-border max-w-lg">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl">Add Thesis Entry</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground text-xl">Add Thesis Entry</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               Define a new worldview position
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label className="text-slate-200">Category *</Label>
+              <Label className="text-foreground">Category *</Label>
               <Select value={addForm.category} onValueChange={(v) => setAddForm({ ...addForm, category: v })}>
-                <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {categories.map((cat) => (
-                    <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
+                    <SelectItem key={cat.id} value={cat.id} className="text-foreground focus:bg-secondary focus:text-foreground">
                       {cat.name}
                     </SelectItem>
                   ))}
@@ -420,37 +420,37 @@ export default function ThesisPage() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Title *</Label>
+              <Label className="text-foreground">Title *</Label>
               <Input
                 value={addForm.title}
                 onChange={(e) => setAddForm({ ...addForm, title: e.target.value })}
                 placeholder="e.g., Bitcoin is the future of money"
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Stance *</Label>
+              <Label className="text-foreground">Stance *</Label>
               <Textarea
                 value={addForm.stance}
                 onChange={(e) => setAddForm({ ...addForm, stance: e.target.value })}
                 placeholder="Your detailed position on this topic..."
                 rows={5}
-                className="bg-slate-700/50 border-slate-600 text-white resize-none focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label className="text-slate-200">Confidence</Label>
+                <Label className="text-foreground">Confidence</Label>
                 <Select
                   value={addForm.confidence}
                   onValueChange={(v) => setAddForm({ ...addForm, confidence: v as ThesisEntry["confidence"] })}
                 >
-                  <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                  <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-800 border-slate-700">
+                  <SelectContent className="bg-card border-border">
                     {Object.entries(confidenceLabels).map(([val, label]) => (
-                      <SelectItem key={val} value={val} className="text-white focus:bg-slate-700 focus:text-white">
+                      <SelectItem key={val} value={val} className="text-foreground focus:bg-secondary focus:text-foreground">
                         {label}
                       </SelectItem>
                     ))}
@@ -458,30 +458,30 @@ export default function ThesisPage() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-200">Status</Label>
+                <Label className="text-foreground">Status</Label>
                 <Select
                   value={addForm.is_active.toString()}
                   onValueChange={(v) => setAddForm({ ...addForm, is_active: parseInt(v) })}
                 >
-                  <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                  <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-800 border-slate-700">
-                    <SelectItem value="1" className="text-white focus:bg-slate-700 focus:text-white">Active</SelectItem>
-                    <SelectItem value="0" className="text-white focus:bg-slate-700 focus:text-white">Inactive</SelectItem>
+                  <SelectContent className="bg-card border-border">
+                    <SelectItem value="1" className="text-foreground focus:bg-secondary focus:text-foreground">Active</SelectItem>
+                    <SelectItem value="0" className="text-foreground focus:bg-secondary focus:text-foreground">Inactive</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
           <DialogFooter className="gap-2 sm:gap-0">
-            <Button variant="outline" onClick={() => setShowAdd(false)} className="border-slate-600 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" onClick={() => setShowAdd(false)} className="border-input text-muted-foreground hover:bg-secondary">
               Cancel
             </Button>
             <Button
               onClick={handleAdd}
               disabled={actionLoading || !addForm.title || !addForm.stance || !addForm.category}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Plus className="w-4 h-4 mr-2" />}
               Add Entry
@@ -492,21 +492,21 @@ export default function ThesisPage() {
 
       {/* Delete Dialog */}
       <Dialog open={showDelete} onOpenChange={setShowDelete}>
-        <DialogContent className="bg-slate-800 border-slate-700">
+        <DialogContent className="bg-card border-border">
           <DialogHeader>
-            <DialogTitle className="text-white">Delete Entry</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground">Delete Entry</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           {deleteEntry && (
             <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
-              <p className="text-white font-medium">{deleteEntry.title}</p>
-              <p className="text-slate-400 text-sm mt-1 line-clamp-2">{deleteEntry.stance}</p>
+              <p className="text-foreground font-medium">{deleteEntry.title}</p>
+              <p className="text-muted-foreground text-sm mt-1 line-clamp-2">{deleteEntry.stance}</p>
             </div>
           )}
           <DialogFooter className="gap-2 sm:gap-0">
-            <Button variant="outline" onClick={() => setShowDelete(false)} className="border-slate-600 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" onClick={() => setShowDelete(false)} className="border-input text-muted-foreground hover:bg-secondary">
               Cancel
             </Button>
             <Button onClick={handleDelete} disabled={actionLoading} className="bg-red-500 hover:bg-red-600">

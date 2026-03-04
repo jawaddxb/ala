@@ -9,13 +9,13 @@ export default async function AdminLayout({
   children: React.ReactNode;
 }) {
   const session = await auth();
-  
+
   if (!session || session.user.role !== "admin") {
     redirect("/login");
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-background dark">
       <AdminHeader user={session.user} />
       <div className="flex">
         <AdminSidebar />

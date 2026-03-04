@@ -120,8 +120,8 @@ export default function VoicePage() {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-24">
-        <Loader2 className="w-10 h-10 animate-spin text-emerald-400 mb-4" />
-        <p className="text-slate-400">Loading voice profile...</p>
+        <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+        <p className="text-muted-foreground">Loading voice profile...</p>
       </div>
     );
   }
@@ -133,11 +133,11 @@ export default function VoicePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Voice Engine</h1>
-          <p className="text-slate-400 mt-1">Define how the AI speaks and thinks</p>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Voice Engine</h1>
+          <p className="text-muted-foreground mt-1">Define how the AI speaks and thinks</p>
         </div>
         <Button
-          className="bg-emerald-500 hover:bg-emerald-600 text-white"
+          className="bg-primary hover:bg-primary/90 text-foreground"
           onClick={handleSave}
           disabled={saving}
         >
@@ -153,29 +153,29 @@ export default function VoicePage() {
       </div>
 
       {/* Profile Section */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white flex items-center gap-2">
-            <Mic className="w-5 h-5 text-emerald-400" />
+          <CardTitle className="text-foreground flex items-center gap-2">
+            <Mic className="w-5 h-5 text-primary" />
             Profile
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label className="text-slate-200">Name</Label>
+            <Label className="text-foreground">Name</Label>
             <Input
               value={profile.name}
               onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-              className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+              className="bg-secondary/50 border-input text-foreground focus:border-ring"
             />
           </div>
           <div className="space-y-2">
-            <Label className="text-slate-200">Bio</Label>
+            <Label className="text-foreground">Bio</Label>
             <Textarea
               value={profile.bio || ""}
               onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
               rows={3}
-              className="bg-slate-700/50 border-slate-600 text-white resize-none focus:border-emerald-500"
+              className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
               placeholder="Background, identity, key traits..."
             />
           </div>
@@ -183,33 +183,33 @@ export default function VoicePage() {
       </Card>
 
       {/* Voice Description */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white">Voice Description</CardTitle>
+          <CardTitle className="text-foreground">Voice Description</CardTitle>
         </CardHeader>
         <CardContent>
           <Textarea
             value={profile.voice_description || ""}
             onChange={(e) => setProfile({ ...profile, voice_description: e.target.value })}
             rows={4}
-            className="bg-slate-700/50 border-slate-600 text-white resize-none focus:border-emerald-500"
+            className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
             placeholder="How should the AI speak? Describe tone, cadence, vocabulary..."
           />
         </CardContent>
       </Card>
 
       {/* Example Quotes */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white">Example Quotes</CardTitle>
-          <p className="text-sm text-slate-400">One quote per line — these teach the AI your speaking style</p>
+          <CardTitle className="text-foreground">Example Quotes</CardTitle>
+          <p className="text-sm text-muted-foreground">One quote per line — these teach the AI your speaking style</p>
         </CardHeader>
         <CardContent>
           <Textarea
             value={quotesText}
             onChange={(e) => setQuotesText(e.target.value)}
             rows={6}
-            className="bg-slate-700/50 border-slate-600 text-white resize-none focus:border-emerald-500 font-mono text-sm"
+            className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring font-mono text-sm"
             placeholder="Even if the sky collapsed, I would not kneel.
 If you don't understand, maybe the frequency doesn't match yours."
           />
@@ -217,16 +217,16 @@ If you don't understand, maybe the frequency doesn't match yours."
       </Card>
 
       {/* Settings */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white">Settings</CardTitle>
+          <CardTitle className="text-foreground">Settings</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Directness Slider */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <Label className="text-slate-200">Directness</Label>
-              <span className="text-sm text-emerald-400 font-medium">
+              <Label className="text-foreground">Directness</Label>
+              <span className="text-sm text-primary font-medium">
                 {directnessLabels[profile.directness]}
               </span>
             </div>
@@ -236,20 +236,20 @@ If you don't understand, maybe the frequency doesn't match yours."
               max={3}
               step={1}
             />
-            <div className="flex justify-between text-xs text-slate-500">
+            <div className="flex justify-between text-xs text-muted-foreground">
               {directnessLabels.map((l) => (
                 <span key={l}>{l}</span>
               ))}
             </div>
           </div>
 
-          <Separator className="bg-slate-700" />
+          <Separator className="bg-border" />
 
           {/* Hedge Level Slider */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <Label className="text-slate-200">Hedge Level</Label>
-              <span className="text-sm text-emerald-400 font-medium">
+              <Label className="text-foreground">Hedge Level</Label>
+              <span className="text-sm text-primary font-medium">
                 {hedgeLabels[profile.hedge_level]}
               </span>
             </div>
@@ -259,68 +259,68 @@ If you don't understand, maybe the frequency doesn't match yours."
               max={3}
               step={1}
             />
-            <div className="flex justify-between text-xs text-slate-500">
+            <div className="flex justify-between text-xs text-muted-foreground">
               {hedgeLabels.map((l) => (
                 <span key={l}>{l}</span>
               ))}
             </div>
           </div>
 
-          <Separator className="bg-slate-700" />
+          <Separator className="bg-border" />
 
           {/* Disclaimer Mode */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label className="text-slate-200">Disclaimer Mode</Label>
+              <Label className="text-foreground">Disclaimer Mode</Label>
               <Select
                 value={profile.disclaimer_mode}
                 onValueChange={(v) => setProfile({ ...profile, disclaimer_mode: v })}
               >
-                <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="off" className="text-white focus:bg-slate-700 focus:text-white">Off</SelectItem>
-                  <SelectItem value="minimal" className="text-white focus:bg-slate-700 focus:text-white">Minimal</SelectItem>
-                  <SelectItem value="standard" className="text-white focus:bg-slate-700 focus:text-white">Standard</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="off" className="text-foreground focus:bg-secondary focus:text-foreground">Off</SelectItem>
+                  <SelectItem value="minimal" className="text-foreground focus:bg-secondary focus:text-foreground">Minimal</SelectItem>
+                  <SelectItem value="standard" className="text-foreground focus:bg-secondary focus:text-foreground">Standard</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             {/* Opinion Strength */}
             <div className="space-y-2">
-              <Label className="text-slate-200">Opinion Strength</Label>
+              <Label className="text-foreground">Opinion Strength</Label>
               <Select
                 value={profile.opinion_strength}
                 onValueChange={(v) => setProfile({ ...profile, opinion_strength: v })}
               >
-                <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
-                  <SelectItem value="neutral" className="text-white focus:bg-slate-700 focus:text-white">Neutral</SelectItem>
-                  <SelectItem value="leaning" className="text-white focus:bg-slate-700 focus:text-white">Leaning</SelectItem>
-                  <SelectItem value="firm" className="text-white focus:bg-slate-700 focus:text-white">Firm</SelectItem>
-                  <SelectItem value="provocative" className="text-white focus:bg-slate-700 focus:text-white">Provocative</SelectItem>
+                <SelectContent className="bg-card border-border">
+                  <SelectItem value="neutral" className="text-foreground focus:bg-secondary focus:text-foreground">Neutral</SelectItem>
+                  <SelectItem value="leaning" className="text-foreground focus:bg-secondary focus:text-foreground">Leaning</SelectItem>
+                  <SelectItem value="firm" className="text-foreground focus:bg-secondary focus:text-foreground">Firm</SelectItem>
+                  <SelectItem value="provocative" className="text-foreground focus:bg-secondary focus:text-foreground">Provocative</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
-          <Separator className="bg-slate-700" />
+          <Separator className="bg-border" />
 
           {/* Challenge Back Toggle */}
           <div className="flex items-center justify-between">
             <div>
-              <Label className="text-slate-200">Challenge Back</Label>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <Label className="text-foreground">Challenge Back</Label>
+              <p className="text-xs text-muted-foreground mt-0.5">
                 Reframe weak questions: &quot;The real question is...&quot;
               </p>
             </div>
             <button
               onClick={() => setProfile({ ...profile, challenge_back: profile.challenge_back ? 0 : 1 })}
               className={`relative w-12 h-6 rounded-full transition-colors ${
-                profile.challenge_back ? "bg-emerald-500" : "bg-slate-600"
+                profile.challenge_back ? "bg-primary" : "bg-muted-foreground"
               }`}
             >
               <span
@@ -334,28 +334,28 @@ If you don't understand, maybe the frequency doesn't match yours."
       </Card>
 
       {/* Language Notes */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white">Language Notes</CardTitle>
+          <CardTitle className="text-foreground">Language Notes</CardTitle>
         </CardHeader>
         <CardContent>
           <Input
             value={profile.language_notes || ""}
             onChange={(e) => setProfile({ ...profile, language_notes: e.target.value })}
-            className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+            className="bg-secondary/50 border-input text-foreground focus:border-ring"
             placeholder="e.g., English primary. Occasional German phrases for DACH audience."
           />
         </CardContent>
       </Card>
 
       {/* Preview Section */}
-      <Card className="bg-slate-800/50 border-slate-700">
+      <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-emerald-400" />
+          <CardTitle className="text-foreground flex items-center gap-2">
+            <Sparkles className="w-5 h-5 text-primary" />
             Preview Voice
           </CardTitle>
-          <p className="text-sm text-slate-400">Test how the AI responds with current settings (save first)</p>
+          <p className="text-sm text-muted-foreground">Test how the AI responds with current settings (save first)</p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex gap-2">
@@ -363,20 +363,20 @@ If you don't understand, maybe the frequency doesn't match yours."
               value={testQuestion}
               onChange={(e) => setTestQuestion(e.target.value)}
               placeholder="Ask a test question..."
-              className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+              className="bg-secondary/50 border-input text-foreground focus:border-ring"
               onKeyDown={(e) => e.key === "Enter" && handleTestVoice()}
             />
             <Button
               onClick={handleTestVoice}
               disabled={testing || !testQuestion.trim()}
-              className="bg-emerald-500 hover:bg-emerald-600 shrink-0"
+              className="bg-primary hover:bg-primary/90 shrink-0"
             >
               {testing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
             </Button>
           </div>
           {testResponse && (
-            <div className="p-4 bg-slate-900/50 border border-slate-700 rounded-lg">
-              <p className="text-slate-300 text-sm leading-relaxed whitespace-pre-wrap">{testResponse}</p>
+            <div className="p-4 bg-muted border border-border rounded-lg">
+              <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-wrap">{testResponse}</p>
             </div>
           )}
         </CardContent>

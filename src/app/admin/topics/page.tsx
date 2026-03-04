@@ -69,13 +69,13 @@ interface Suggestion {
 }
 
 const statusStyles: Record<string, string> = {
-  active: "bg-emerald-500/20 text-emerald-400",
+  active: "bg-primary/20 text-primary",
   draft: "bg-yellow-500/20 text-yellow-400",
   disabled: "bg-red-500/20 text-red-400",
 };
 
 const statusDotColors: Record<string, string> = {
-  active: "bg-emerald-400",
+  active: "bg-primary",
   draft: "bg-yellow-400",
   disabled: "bg-red-400",
 };
@@ -257,11 +257,11 @@ export default function TopicsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white tracking-tight">Topics</h1>
-          <p className="text-slate-400 mt-1">Manage what the AI can discuss</p>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Topics</h1>
+          <p className="text-muted-foreground mt-1">Manage what the AI can discuss</p>
         </div>
         <Button
-          className="bg-emerald-500 hover:bg-emerald-600 text-white"
+          className="bg-primary hover:bg-primary/90 text-foreground"
           onClick={() => setShowAdd(true)}
         >
           <Plus className="w-4 h-4 mr-2" />
@@ -270,17 +270,17 @@ export default function TopicsPage() {
       </div>
 
       <Tabs defaultValue="topics">
-        <TabsList className="bg-slate-800/50 border border-slate-700">
+        <TabsList className="bg-card/50 border border-border">
           <TabsTrigger
             value="topics"
-            className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400"
+            className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
           >
             <LayoutGrid className="w-4 h-4 mr-2" />
             Topics ({topics.length})
           </TabsTrigger>
           <TabsTrigger
             value="suggestions"
-            className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400"
+            className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
           >
             <MessageSquare className="w-4 h-4 mr-2" />
             Suggestions ({pendingSuggestions.length})
@@ -291,34 +291,34 @@ export default function TopicsPage() {
         <TabsContent value="topics" className="mt-4">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-16">
-              <Loader2 className="w-10 h-10 animate-spin text-emerald-400 mb-4" />
-              <p className="text-slate-400">Loading topics...</p>
+              <Loader2 className="w-10 h-10 animate-spin text-primary mb-4" />
+              <p className="text-muted-foreground">Loading topics...</p>
             </div>
           ) : topics.length === 0 ? (
-            <Card className="bg-slate-800/50 border-slate-700">
+            <Card className="bg-card/50 border-border">
               <CardContent className="py-16 text-center">
-                <div className="mx-auto w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
-                  <LayoutGrid className="w-8 h-8 text-slate-500" />
+                <div className="mx-auto w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4">
+                  <LayoutGrid className="w-8 h-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-medium text-white mb-2">No topics yet</h3>
-                <p className="text-slate-400 mb-6">Add topics to control what the AI discusses.</p>
-                <Button onClick={() => setShowAdd(true)} className="bg-emerald-500 hover:bg-emerald-600">
+                <h3 className="text-lg font-medium text-foreground mb-2">No topics yet</h3>
+                <p className="text-muted-foreground mb-6">Add topics to control what the AI discusses.</p>
+                <Button onClick={() => setShowAdd(true)} className="bg-primary hover:bg-primary/90">
                   <Plus className="w-4 h-4 mr-2" />
                   Add Topic
                 </Button>
               </CardContent>
             </Card>
           ) : (
-            <Card className="bg-slate-800/50 border-slate-700">
+            <Card className="bg-card/50 border-border">
               <Table>
                 <TableHeader>
-                  <TableRow className="border-slate-700 hover:bg-transparent">
-                    <TableHead className="text-slate-400">Name</TableHead>
-                    <TableHead className="text-slate-400">Category</TableHead>
-                    <TableHead className="text-slate-400">Status</TableHead>
-                    <TableHead className="text-slate-400">Stance Summary</TableHead>
-                    <TableHead className="text-slate-400">Updated</TableHead>
-                    <TableHead className="text-slate-400 w-20"></TableHead>
+                  <TableRow className="border-border hover:bg-transparent">
+                    <TableHead className="text-muted-foreground">Name</TableHead>
+                    <TableHead className="text-muted-foreground">Category</TableHead>
+                    <TableHead className="text-muted-foreground">Status</TableHead>
+                    <TableHead className="text-muted-foreground">Stance Summary</TableHead>
+                    <TableHead className="text-muted-foreground">Updated</TableHead>
+                    <TableHead className="text-muted-foreground w-20"></TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -327,12 +327,12 @@ export default function TopicsPage() {
 
                     if (isEditing) {
                       return (
-                        <TableRow key={topic.id} className="border-slate-700 bg-slate-800">
+                        <TableRow key={topic.id} className="border-border bg-card">
                           <TableCell>
                             <Input
                               value={editForm.name || ""}
                               onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                              className="bg-slate-700/50 border-slate-600 text-white h-8 text-sm"
+                              className="bg-secondary/50 border-input text-foreground h-8 text-sm"
                             />
                           </TableCell>
                           <TableCell>
@@ -340,12 +340,12 @@ export default function TopicsPage() {
                               value={editForm.category}
                               onValueChange={(v) => setEditForm({ ...editForm, category: v })}
                             >
-                              <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white h-8 text-sm">
+                              <SelectTrigger className="bg-secondary/50 border-input text-foreground h-8 text-sm">
                                 <SelectValue />
                               </SelectTrigger>
-                              <SelectContent className="bg-slate-800 border-slate-700">
+                              <SelectContent className="bg-card border-border">
                                 {categories.map((cat) => (
-                                  <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
+                                  <SelectItem key={cat.id} value={cat.id} className="text-foreground focus:bg-secondary focus:text-foreground">
                                     {cat.name}
                                   </SelectItem>
                                 ))}
@@ -357,13 +357,13 @@ export default function TopicsPage() {
                               value={editForm.status}
                               onValueChange={(v) => setEditForm({ ...editForm, status: v as Topic["status"] })}
                             >
-                              <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white h-8 text-sm w-28">
+                              <SelectTrigger className="bg-secondary/50 border-input text-foreground h-8 text-sm w-28">
                                 <SelectValue />
                               </SelectTrigger>
-                              <SelectContent className="bg-slate-800 border-slate-700">
-                                <SelectItem value="active" className="text-white focus:bg-slate-700 focus:text-white">Active</SelectItem>
-                                <SelectItem value="draft" className="text-white focus:bg-slate-700 focus:text-white">Draft</SelectItem>
-                                <SelectItem value="disabled" className="text-white focus:bg-slate-700 focus:text-white">Disabled</SelectItem>
+                              <SelectContent className="bg-card border-border">
+                                <SelectItem value="active" className="text-foreground focus:bg-secondary focus:text-foreground">Active</SelectItem>
+                                <SelectItem value="draft" className="text-foreground focus:bg-secondary focus:text-foreground">Draft</SelectItem>
+                                <SelectItem value="disabled" className="text-foreground focus:bg-secondary focus:text-foreground">Disabled</SelectItem>
                               </SelectContent>
                             </Select>
                           </TableCell>
@@ -372,7 +372,7 @@ export default function TopicsPage() {
                               value={editForm.stance_summary || ""}
                               onChange={(e) => setEditForm({ ...editForm, stance_summary: e.target.value })}
                               rows={2}
-                              className="bg-slate-700/50 border-slate-600 text-white text-sm resize-none"
+                              className="bg-secondary/50 border-input text-foreground text-sm resize-none"
                             />
                           </TableCell>
                           <TableCell></TableCell>
@@ -381,7 +381,7 @@ export default function TopicsPage() {
                               <Button
                                 size="icon"
                                 variant="ghost"
-                                className="h-7 w-7 text-emerald-400 hover:bg-emerald-500/20"
+                                className="h-7 w-7 text-primary hover:bg-primary/20"
                                 onClick={() => handleUpdateTopic(topic.id)}
                                 disabled={actionLoading}
                               >
@@ -390,7 +390,7 @@ export default function TopicsPage() {
                               <Button
                                 size="icon"
                                 variant="ghost"
-                                className="h-7 w-7 text-slate-400 hover:bg-slate-700"
+                                className="h-7 w-7 text-muted-foreground hover:bg-secondary"
                                 onClick={() => { setEditingId(null); setEditForm({}); }}
                               >
                                 <X className="w-4 h-4" />
@@ -404,12 +404,12 @@ export default function TopicsPage() {
                     return (
                       <TableRow
                         key={topic.id}
-                        className="border-slate-700 hover:bg-slate-800/50 cursor-pointer"
+                        className="border-border hover:bg-card/50 cursor-pointer"
                         onClick={() => startEditing(topic)}
                       >
-                        <TableCell className="text-white font-medium">{topic.name}</TableCell>
+                        <TableCell className="text-foreground font-medium">{topic.name}</TableCell>
                         <TableCell>
-                          <Badge variant="secondary" className="bg-slate-700/50 text-slate-400 border-0 text-xs">
+                          <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground border-0 text-xs">
                             {categories.find((c) => c.id === topic.category)?.name || topic.category}
                           </Badge>
                         </TableCell>
@@ -425,10 +425,10 @@ export default function TopicsPage() {
                             {topic.status}
                           </button>
                         </TableCell>
-                        <TableCell className="text-slate-400 text-sm max-w-xs truncate">
-                          {topic.stance_summary || "—"}
+                        <TableCell className="text-muted-foreground text-sm max-w-xs truncate">
+                          {topic.stance_summary || "\u2014"}
                         </TableCell>
-                        <TableCell className="text-slate-500 text-xs">
+                        <TableCell className="text-muted-foreground text-xs">
                           {new Date(topic.updated_at).toLocaleDateString()}
                         </TableCell>
                         <TableCell>
@@ -456,13 +456,13 @@ export default function TopicsPage() {
         {/* Suggestions Tab */}
         <TabsContent value="suggestions" className="mt-4">
           {pendingSuggestions.length === 0 ? (
-            <Card className="bg-slate-800/50 border-slate-700">
+            <Card className="bg-card/50 border-border">
               <CardContent className="py-16 text-center">
-                <div className="mx-auto w-16 h-16 bg-slate-700 rounded-full flex items-center justify-center mb-4">
-                  <MessageSquare className="w-8 h-8 text-slate-500" />
+                <div className="mx-auto w-16 h-16 bg-secondary rounded-full flex items-center justify-center mb-4">
+                  <MessageSquare className="w-8 h-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-medium text-white mb-2">No pending suggestions</h3>
-                <p className="text-slate-400">
+                <h3 className="text-lg font-medium text-foreground mb-2">No pending suggestions</h3>
+                <p className="text-muted-foreground">
                   Questions the AI can&apos;t answer will appear here for review.
                 </p>
               </CardContent>
@@ -470,18 +470,18 @@ export default function TopicsPage() {
           ) : (
             <div className="space-y-3">
               {pendingSuggestions.map((suggestion) => (
-                <Card key={suggestion.id} className="bg-slate-800/50 border-slate-700">
+                <Card key={suggestion.id} className="bg-card/50 border-border">
                   <CardContent className="py-4">
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
-                        <p className="text-white text-sm leading-relaxed">&ldquo;{suggestion.query}&rdquo;</p>
+                        <p className="text-foreground text-sm leading-relaxed">&ldquo;{suggestion.query}&rdquo;</p>
                         <div className="flex items-center gap-2 mt-2">
                           {suggestion.suggested_category && (
-                            <Badge variant="secondary" className="bg-slate-700/50 text-slate-400 border-0 text-xs">
+                            <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground border-0 text-xs">
                               {categories.find((c) => c.id === suggestion.suggested_category)?.name || suggestion.suggested_category}
                             </Badge>
                           )}
-                          <span className="text-xs text-slate-500">
+                          <span className="text-xs text-muted-foreground">
                             {new Date(suggestion.created_at).toLocaleDateString()}
                           </span>
                         </div>
@@ -489,7 +489,7 @@ export default function TopicsPage() {
                       <div className="flex gap-2 shrink-0">
                         <Button
                           size="sm"
-                          className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 h-8"
+                          className="bg-primary/20 text-primary hover:bg-primary/30 h-8"
                           onClick={() => handleSuggestionAction(suggestion, "approved")}
                         >
                           <ThumbsUp className="w-3.5 h-3.5 mr-1" />
@@ -516,33 +516,33 @@ export default function TopicsPage() {
 
       {/* Add Topic Dialog */}
       <Dialog open={showAdd} onOpenChange={setShowAdd}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-lg">
+        <DialogContent className="bg-card border-border max-w-lg">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl">Add Topic</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground text-xl">Add Topic</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               Define a new topic the AI can engage with
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label className="text-slate-200">Name *</Label>
+              <Label className="text-foreground">Name *</Label>
               <Input
                 value={addForm.name}
                 onChange={(e) => setAddForm({ ...addForm, name: e.target.value })}
                 placeholder="e.g., Bitcoin market cycles"
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label className="text-slate-200">Category *</Label>
+                <Label className="text-foreground">Category *</Label>
                 <Select value={addForm.category} onValueChange={(v) => setAddForm({ ...addForm, category: v })}>
-                  <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                  <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                     <SelectValue placeholder="Select" />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-800 border-slate-700">
+                  <SelectContent className="bg-card border-border">
                     {categories.map((cat) => (
-                      <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
+                      <SelectItem key={cat.id} value={cat.id} className="text-foreground focus:bg-secondary focus:text-foreground">
                         {cat.name}
                       </SelectItem>
                     ))}
@@ -550,50 +550,50 @@ export default function TopicsPage() {
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label className="text-slate-200">Status</Label>
+                <Label className="text-foreground">Status</Label>
                 <Select
                   value={addForm.status}
                   onValueChange={(v) => setAddForm({ ...addForm, status: v as Topic["status"] })}
                 >
-                  <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                  <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-slate-800 border-slate-700">
-                    <SelectItem value="active" className="text-white focus:bg-slate-700 focus:text-white">Active</SelectItem>
-                    <SelectItem value="draft" className="text-white focus:bg-slate-700 focus:text-white">Draft</SelectItem>
-                    <SelectItem value="disabled" className="text-white focus:bg-slate-700 focus:text-white">Disabled</SelectItem>
+                  <SelectContent className="bg-card border-border">
+                    <SelectItem value="active" className="text-foreground focus:bg-secondary focus:text-foreground">Active</SelectItem>
+                    <SelectItem value="draft" className="text-foreground focus:bg-secondary focus:text-foreground">Draft</SelectItem>
+                    <SelectItem value="disabled" className="text-foreground focus:bg-secondary focus:text-foreground">Disabled</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Stance Summary</Label>
+              <Label className="text-foreground">Stance Summary</Label>
               <Textarea
                 value={addForm.stance_summary}
                 onChange={(e) => setAddForm({ ...addForm, stance_summary: e.target.value })}
                 placeholder="Brief summary of position on this topic..."
                 rows={3}
-                className="bg-slate-700/50 border-slate-600 text-white resize-none focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Deflection Message (if disabled)</Label>
+              <Label className="text-foreground">Deflection Message (if disabled)</Label>
               <Input
                 value={addForm.deflection_message}
                 onChange={(e) => setAddForm({ ...addForm, deflection_message: e.target.value })}
                 placeholder="I haven't shared my view on that."
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
           </div>
           <DialogFooter className="gap-2 sm:gap-0">
-            <Button variant="outline" onClick={() => setShowAdd(false)} className="border-slate-600 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" onClick={() => setShowAdd(false)} className="border-input text-muted-foreground hover:bg-secondary">
               Cancel
             </Button>
             <Button
               onClick={handleAddTopic}
               disabled={actionLoading || !addForm.name || !addForm.category}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Plus className="w-4 h-4 mr-2" />}
               Add Topic
@@ -604,31 +604,31 @@ export default function TopicsPage() {
 
       {/* Approve Suggestion Dialog */}
       <Dialog open={showApproveDialog} onOpenChange={setShowApproveDialog}>
-        <DialogContent className="bg-slate-800 border-slate-700 max-w-lg">
+        <DialogContent className="bg-card border-border max-w-lg">
           <DialogHeader>
-            <DialogTitle className="text-white text-xl">Create Topic from Suggestion</DialogTitle>
-            <DialogDescription className="text-slate-400">
+            <DialogTitle className="text-foreground text-xl">Create Topic from Suggestion</DialogTitle>
+            <DialogDescription className="text-muted-foreground">
               {approvingSuggestion && `"${approvingSuggestion.query}"`}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label className="text-slate-200">Topic Name *</Label>
+              <Label className="text-foreground">Topic Name *</Label>
               <Input
                 value={approveForm.name}
                 onChange={(e) => setApproveForm({ ...approveForm, name: e.target.value })}
-                className="bg-slate-700/50 border-slate-600 text-white focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Category *</Label>
+              <Label className="text-foreground">Category *</Label>
               <Select value={approveForm.category} onValueChange={(v) => setApproveForm({ ...approveForm, category: v })}>
-                <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                <SelectTrigger className="bg-secondary/50 border-input text-foreground">
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
-                <SelectContent className="bg-slate-800 border-slate-700">
+                <SelectContent className="bg-card border-border">
                   {categories.map((cat) => (
-                    <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
+                    <SelectItem key={cat.id} value={cat.id} className="text-foreground focus:bg-secondary focus:text-foreground">
                       {cat.name}
                     </SelectItem>
                   ))}
@@ -636,23 +636,23 @@ export default function TopicsPage() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label className="text-slate-200">Stance Summary</Label>
+              <Label className="text-foreground">Stance Summary</Label>
               <Textarea
                 value={approveForm.stance_summary}
                 onChange={(e) => setApproveForm({ ...approveForm, stance_summary: e.target.value })}
                 rows={3}
-                className="bg-slate-700/50 border-slate-600 text-white resize-none focus:border-emerald-500"
+                className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
               />
             </div>
           </div>
           <DialogFooter className="gap-2 sm:gap-0">
-            <Button variant="outline" onClick={() => setShowApproveDialog(false)} className="border-slate-600 text-slate-300 hover:bg-slate-700">
+            <Button variant="outline" onClick={() => setShowApproveDialog(false)} className="border-input text-muted-foreground hover:bg-secondary">
               Cancel
             </Button>
             <Button
               onClick={handleApproveAndCreate}
               disabled={actionLoading || !approveForm.name || !approveForm.category}
-              className="bg-emerald-500 hover:bg-emerald-600"
+              className="bg-primary hover:bg-primary/90"
             >
               {actionLoading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Check className="w-4 h-4 mr-2" />}
               Create Topic
