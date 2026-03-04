@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -77,6 +78,10 @@ export function AdminSidebar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentSource = searchParams.get("source");
+  const { data: session } = useSession();
+
+  const userName = session?.user?.name || session?.user?.email || "Admin";
+  const userInitial = userName.charAt(0).toUpperCase();
 
   return (
     <aside className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-card/50 backdrop-blur-sm border-r border-border/50 overflow-y-auto hidden lg:block">
@@ -147,10 +152,10 @@ export function AdminSidebar() {
       <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border/50 bg-card/80">
         <div className="flex items-center gap-3 px-3 py-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-sm font-bold text-primary-foreground">A</span>
+            <span className="text-sm font-bold text-primary-foreground">{userInitial}</span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-foreground">ALA Admin</p>
+            <p className="text-sm font-medium text-foreground">{userName}</p>
             <p className="text-xs text-muted-foreground truncate">v1.0.0</p>
           </div>
         </div>

@@ -159,71 +159,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Quick Actions */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-semibold text-foreground">Quick Actions</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <Link href="/admin/sources">
-            <Card className="bg-card/50 border-border hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 cursor-pointer group">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-primary/20 rounded-xl group-hover:bg-primary/30 transition-colors">
-                    <Library className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-foreground group-hover:text-primary transition-colors">
-                      Browse Sources
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground">
-                      View and manage all corpus entries
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </Link>
 
-          <Link href="/admin/users">
-            <Card className="bg-card/50 border-border hover:bg-blue-500/10 hover:border-blue-500/30 transition-all duration-300 cursor-pointer group">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-blue-500/20 rounded-xl group-hover:bg-blue-500/30 transition-colors">
-                    <Users className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-foreground group-hover:text-blue-400 transition-colors">
-                      Manage Users
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground">
-                      View and manage user accounts
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </Link>
-
-          <Link href="/admin/sources?import=true">
-            <Card className="bg-card/50 border-border hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 cursor-pointer group">
-              <CardHeader>
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-purple-500/20 rounded-xl group-hover:bg-purple-500/30 transition-colors">
-                    <Upload className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <div>
-                    <CardTitle className="text-foreground group-hover:text-purple-400 transition-colors">
-                      Import Data
-                    </CardTitle>
-                    <CardDescription className="text-muted-foreground">
-                      Bulk import sources from JSON
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </Link>
-        </div>
-      </div>
 
       {/* Empty State Warning */}
       {totalSources === 0 && (

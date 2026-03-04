@@ -54,7 +54,14 @@ export default function VoicePage() {
       try {
         const res = await fetch("/api/admin/voice");
         const data = await res.json();
-        setProfile(data);
+        setProfile({
+          ...data,
+          directness: Number(data.directness ?? 1),
+          hedge_level: Number(data.hedge_level ?? 0),
+          challenge_back: Number(data.challenge_back ?? 0),
+          disclaimer_mode: data.disclaimer_mode ?? "off",
+          opinion_strength: data.opinion_strength ?? "firm",
+        });
         // Parse quotes JSON into text lines
         try {
           const quotes = data.example_quotes ? JSON.parse(data.example_quotes) : [];
@@ -182,44 +189,10 @@ export default function VoicePage() {
         </CardContent>
       </Card>
 
-      {/* Voice Description */}
+      {/* Personality Dials */}
       <Card className="bg-card/50 border-border">
         <CardHeader>
-          <CardTitle className="text-foreground">Voice Description</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Textarea
-            value={profile.voice_description || ""}
-            onChange={(e) => setProfile({ ...profile, voice_description: e.target.value })}
-            rows={4}
-            className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
-            placeholder="How should the AI speak? Describe tone, cadence, vocabulary..."
-          />
-        </CardContent>
-      </Card>
-
-      {/* Example Quotes */}
-      <Card className="bg-card/50 border-border">
-        <CardHeader>
-          <CardTitle className="text-foreground">Example Quotes</CardTitle>
-          <p className="text-sm text-muted-foreground">One quote per line — these teach the AI your speaking style</p>
-        </CardHeader>
-        <CardContent>
-          <Textarea
-            value={quotesText}
-            onChange={(e) => setQuotesText(e.target.value)}
-            rows={6}
-            className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring font-mono text-sm"
-            placeholder="Even if the sky collapsed, I would not kneel.
-If you don't understand, maybe the frequency doesn't match yours."
-          />
-        </CardContent>
-      </Card>
-
-      {/* Settings */}
-      <Card className="bg-card/50 border-border">
-        <CardHeader>
-          <CardTitle className="text-foreground">Settings</CardTitle>
+          <CardTitle className="text-foreground">Personality Dials</CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Directness Slider */}
@@ -332,6 +305,42 @@ If you don't understand, maybe the frequency doesn't match yours."
           </div>
         </CardContent>
       </Card>
+
+      {/* Voice Description */}
+      <Card className="bg-card/50 border-border">
+        <CardHeader>
+          <CardTitle className="text-foreground">Voice Description</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Textarea
+            value={profile.voice_description || ""}
+            onChange={(e) => setProfile({ ...profile, voice_description: e.target.value })}
+            rows={4}
+            className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
+            placeholder="How should the AI speak? Describe tone, cadence, vocabulary..."
+          />
+        </CardContent>
+      </Card>
+
+      {/* Example Quotes */}
+      <Card className="bg-card/50 border-border">
+        <CardHeader>
+          <CardTitle className="text-foreground">Example Quotes</CardTitle>
+          <p className="text-sm text-muted-foreground">One quote per line — these teach the AI your speaking style</p>
+        </CardHeader>
+        <CardContent>
+          <Textarea
+            value={quotesText}
+            onChange={(e) => setQuotesText(e.target.value)}
+            rows={6}
+            className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring font-mono text-sm"
+            placeholder="Even if the sky collapsed, I would not kneel.
+If you don't understand, maybe the frequency doesn't match yours."
+          />
+        </CardContent>
+      </Card>
+
+
 
       {/* Language Notes */}
       <Card className="bg-card/50 border-border">
