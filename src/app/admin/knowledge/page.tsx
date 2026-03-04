@@ -90,8 +90,8 @@ export default function KnowledgePage() {
       const params = categoryFilter !== "all" ? `?category=${categoryFilter}` : "";
       const res = await fetch(`/api/admin/knowledge${params}`);
       const data = await res.json();
-      setDocs(data.docs);
-      setCategories(data.categories);
+      setDocs(data.docs ?? []);
+      setCategories(data.categories ?? []);
     } catch (error) {
       console.error("Failed to fetch:", error);
     } finally {

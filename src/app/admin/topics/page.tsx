@@ -109,8 +109,8 @@ export default function TopicsPage() {
     try {
       const res = await fetch("/api/admin/topics");
       const data = await res.json();
-      setTopics(data.topics);
-      setCategories(data.categories);
+      setTopics(data.topics ?? []);
+      setCategories(data.categories ?? []);
     } catch (error) {
       console.error("Failed to fetch topics:", error);
     } finally {
@@ -122,7 +122,7 @@ export default function TopicsPage() {
     try {
       const res = await fetch("/api/admin/topics/suggestions");
       const data = await res.json();
-      setSuggestions(data.suggestions);
+      setSuggestions(data.suggestions ?? []);
     } catch (error) {
       console.error("Failed to fetch suggestions:", error);
     }

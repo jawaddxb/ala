@@ -23,9 +23,14 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
+      // NextAuth v5 beta requires explicit CSRF token
+      const csrfRes = await fetch("/api/auth/csrf");
+      const { csrfToken } = await csrfRes.json();
+
       const result = await signIn("credentials", {
         email,
         password,
+        csrfToken,
         redirect: false,
       });
 

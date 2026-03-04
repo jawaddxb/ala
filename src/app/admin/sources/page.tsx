@@ -111,8 +111,8 @@ export default function SourcesPage() {
 
       const res = await fetch(`/api/admin/sources?${params}`);
       const data = await res.json();
-      setSources(data.sources);
-      setTotal(data.total);
+      setSources(data.sources ?? []);
+      setTotal(data.total ?? 0);
     } catch (error) {
       console.error("Failed to fetch sources:", error);
     } finally {

@@ -90,8 +90,8 @@ export default function ThesisPage() {
       const params = activeTab !== "all" ? `?category=${activeTab}` : "";
       const res = await fetch(`/api/admin/thesis${params}`);
       const data = await res.json();
-      setEntries(data.entries);
-      setCategories(data.categories);
+      setEntries(data.entries ?? []);
+      setCategories(data.categories ?? []);
     } catch (error) {
       console.error("Failed to fetch:", error);
     } finally {

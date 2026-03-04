@@ -74,8 +74,8 @@ export default function UsersPage() {
     try {
       const res = await fetch("/api/admin/users");
       const data = await res.json();
-      setUsers(data.users);
-      setFilteredUsers(data.users);
+      setUsers(data.users ?? []);
+      setFilteredUsers(data.users ?? []);
     } catch (error) {
       console.error("Failed to fetch users:", error);
     } finally {
