@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h1 className="font-semibold text-lg tracking-tight">ALA</h1>
-                  <p className="text-xs text-muted-foreground">AI Life Assistant</p>
+                  <p className="text-xs text-muted-foreground">Ask. Learn. Act.</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">

@@ -30,10 +30,13 @@ interface AdminHeaderProps {
 }
 
 const mobileNav = [
-  { name: "Dashboard", href: "/admin", icon: "📊" },
-  { name: "Sources", href: "/admin/sources", icon: "📚" },
-  { name: "Users", href: "/admin/users", icon: "👥" },
-  { name: "Settings", href: "/admin/settings", icon: "⚙️" },
+  { name: "Dashboard", href: "/admin" },
+  { name: "Thesis", href: "/admin/thesis" },
+  { name: "Voice", href: "/admin/voice" },
+  { name: "Topics", href: "/admin/topics" },
+  { name: "Knowledge", href: "/admin/knowledge" },
+  { name: "Sources", href: "/admin/sources" },
+  { name: "Users", href: "/admin/users" },
 ];
 
 export function AdminHeader({ user }: AdminHeaderProps) {
@@ -71,7 +74,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
                     href={item.href}
                     className="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors"
                   >
-                    <span className="text-xl">{item.icon}</span>
+                    <span className="w-2 h-2 rounded-full bg-emerald-400/50" />
                     <span className="font-medium">{item.name}</span>
                   </Link>
                 ))}

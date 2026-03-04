@@ -54,12 +54,12 @@ interface Source {
 }
 
 const sourceTypes = [
-  { value: "all", label: "All Sources", icon: "📚" },
-  { value: "quran", label: "Quran", icon: "📖" },
-  { value: "bible", label: "Bible", icon: "✝️" },
-  { value: "hadith_bukhari", label: "Hadith Bukhari", icon: "📜" },
-  { value: "hadith_muslim", label: "Hadith Muslim", icon: "📜" },
-  { value: "secular", label: "Secular", icon: "💡" },
+  { value: "all", label: "All Sources" },
+  { value: "quran", label: "Quran" },
+  { value: "bible", label: "Bible" },
+  { value: "hadith_bukhari", label: "Hadith Bukhari" },
+  { value: "hadith_muslim", label: "Hadith Muslim" },
+  { value: "secular", label: "Secular" },
 ];
 
 const sourceStyles: Record<string, { bg: string; text: string; border: string }> = {
@@ -314,7 +314,6 @@ export default function SourcesPage() {
                       className="text-white focus:bg-slate-700 focus:text-white"
                     >
                       <span className="flex items-center gap-2">
-                        <span>{type.icon}</span>
                         {type.label}
                       </span>
                     </SelectItem>
@@ -341,7 +340,7 @@ export default function SourcesPage() {
               <span className="text-sm text-slate-500">Active filters:</span>
               {sourceType !== "all" && (
                 <Badge variant="secondary" className={`${sourceStyles[sourceType]?.bg || 'bg-slate-500/20'} ${sourceStyles[sourceType]?.text || 'text-slate-400'} border-0`}>
-                  {currentSourceType?.icon} {currentSourceType?.label}
+                  {currentSourceType?.label}
                 </Badge>
               )}
               {search && (
@@ -435,7 +434,7 @@ export default function SourcesPage() {
                           variant="secondary"
                           className={`${style.bg} ${style.text} border-0 text-xs`}
                         >
-                          {sourceTypes.find(s => s.value === source.source)?.icon} {source.source.replace("_", " ")}
+                          {source.source.replace("_", " ")}
                         </Badge>
                         {source.category && (
                           <Badge variant="secondary" className="bg-slate-700/50 text-slate-400 border-0 text-xs">
@@ -574,7 +573,6 @@ export default function SourcesPage() {
                           className="text-white focus:bg-slate-700"
                         >
                           <span className="flex items-center gap-2">
-                            <span>{type.icon}</span>
                             {type.label}
                           </span>
                         </SelectItem>

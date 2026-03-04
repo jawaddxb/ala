@@ -11,11 +11,11 @@ export default function AdminDashboard() {
   const adminCount = users.filter((u) => u.role === "admin").length;
 
   const sourceData = [
-    { name: "Quran", key: "quran", icon: "📖", gradient: "from-emerald-500 to-teal-600" },
-    { name: "Bible", key: "bible", icon: "✝️", gradient: "from-blue-500 to-indigo-600" },
-    { name: "Hadith Bukhari", key: "hadith_bukhari", icon: "📜", gradient: "from-amber-500 to-orange-600" },
-    { name: "Hadith Muslim", key: "hadith_muslim", icon: "📜", gradient: "from-orange-500 to-red-600" },
-    { name: "Secular Wisdom", key: "secular", icon: "💡", gradient: "from-purple-500 to-pink-600" },
+    { name: "Quran", key: "quran", gradient: "from-emerald-500 to-teal-600" },
+    { name: "Bible", key: "bible", gradient: "from-blue-500 to-indigo-600" },
+    { name: "Hadith Bukhari", key: "hadith_bukhari", gradient: "from-amber-500 to-orange-600" },
+    { name: "Hadith Muslim", key: "hadith_muslim", gradient: "from-orange-500 to-red-600" },
+    { name: "Secular Wisdom", key: "secular", gradient: "from-purple-500 to-pink-600" },
   ];
 
   return (
@@ -123,7 +123,9 @@ export default function AdminDashboard() {
                 <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800 hover:border-slate-600 transition-all duration-300 cursor-pointer group h-full">
                   <CardHeader className="pb-3">
                     <div className="flex items-center gap-3">
-                      <span className="text-2xl">{source.icon}</span>
+                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${source.gradient} flex items-center justify-center`}>
+                        <span className="text-xs font-bold text-white">{source.name.charAt(0)}</span>
+                      </div>
                       <div>
                         <CardTitle className="text-base text-white group-hover:text-emerald-400 transition-colors">
                           {source.name}

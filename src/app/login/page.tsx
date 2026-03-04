@@ -59,7 +59,7 @@ export default function LoginPage() {
               <BookOpen className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-white">ALA</h1>
-            <p className="text-slate-400 mt-1">All-Encompassing Library of Answers</p>
+            <p className="text-slate-400 mt-1">Ask. Learn. Act.</p>
           </Link>
         </div>
 
@@ -159,7 +159,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <p className="text-center text-sm text-slate-500 mt-8">
-          Discover wisdom from sacred texts and ancient philosophy
+          Direct answers. No hedging. No filter.
         </p>
       </div>
     </div>
