@@ -209,7 +209,7 @@ export default function ThesisPage() {
               value={cat.id}
               className="data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-400"
             >
-              {cat.icon} {cat.name}
+              {cat.name}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -264,7 +264,7 @@ export default function ThesisPage() {
                         <SelectContent className="bg-slate-800 border-slate-700">
                           {categories.map((cat) => (
                             <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                              {cat.icon} {cat.name}
+                              {cat.name}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -413,7 +413,7 @@ export default function ThesisPage() {
                 <SelectContent className="bg-slate-800 border-slate-700">
                   {categories.map((cat) => (
                     <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                      {cat.icon} {cat.name}
+                      {cat.name}
                     </SelectItem>
                   ))}
                 </SelectContent>

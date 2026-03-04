@@ -65,7 +65,7 @@ export function ChatInterface() {
       console.error('Chat error:', error);
       addMessage({
         role: 'assistant',
-        content: 'I apologize, but I encountered an error. Please try again.',
+        content: 'Something went wrong. Try again.',
       });
     } finally {
       setIsLoading(false);
@@ -155,20 +155,20 @@ function EmptyState() {
   const suggestions = [
     {
       icon: <Compass className="w-5 h-5" />,
-      title: "Life decisions",
-      prompt: "How do I make a big decision when I'm uncertain?",
+      title: "Bitcoin & Money",
+      prompt: "Why is Bitcoin the only real money?",
       color: "bg-blue-50 text-blue-600 dark:bg-blue-900/20"
     },
     {
       icon: <Heart className="w-5 h-5" />,
-      title: "Relationships",
-      prompt: "How can I have difficult conversations with loved ones?",
+      title: "Power & Freedom",
+      prompt: "What does real freedom look like in the modern world?",
       color: "bg-rose-50 text-rose-600 dark:bg-rose-900/20"
     },
     {
       icon: <Lightbulb className="w-5 h-5" />,
-      title: "Productivity",
-      prompt: "How can I be more productive without burning out?",
+      title: "Building Wealth",
+      prompt: "What's the difference between making money and building wealth?",
       color: "bg-amber-50 text-amber-600 dark:bg-amber-900/20"
     },
   ];
@@ -200,7 +200,7 @@ function EmptyState() {
     } catch {
       addMessage({
         role: 'assistant',
-        content: 'I apologize, but I encountered an error. Please try again.',
+        content: 'Something went wrong. Try again.',
       });
     } finally {
       setIsLoading(false);

@@ -74,10 +74,10 @@ const statusStyles: Record<string, string> = {
   disabled: "bg-red-500/20 text-red-400",
 };
 
-const statusIcons: Record<string, string> = {
-  active: "🟢",
-  draft: "🟡",
-  disabled: "🔴",
+const statusDotColors: Record<string, string> = {
+  active: "bg-emerald-400",
+  draft: "bg-yellow-400",
+  disabled: "bg-red-400",
 };
 
 export default function TopicsPage() {
@@ -346,7 +346,7 @@ export default function TopicsPage() {
                               <SelectContent className="bg-slate-800 border-slate-700">
                                 {categories.map((cat) => (
                                   <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                                    {cat.icon} {cat.name}
+                                    {cat.name}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -361,9 +361,9 @@ export default function TopicsPage() {
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent className="bg-slate-800 border-slate-700">
-                                <SelectItem value="active" className="text-white focus:bg-slate-700 focus:text-white">🟢 Active</SelectItem>
-                                <SelectItem value="draft" className="text-white focus:bg-slate-700 focus:text-white">🟡 Draft</SelectItem>
-                                <SelectItem value="disabled" className="text-white focus:bg-slate-700 focus:text-white">🔴 Disabled</SelectItem>
+                                <SelectItem value="active" className="text-white focus:bg-slate-700 focus:text-white">Active</SelectItem>
+                                <SelectItem value="draft" className="text-white focus:bg-slate-700 focus:text-white">Draft</SelectItem>
+                                <SelectItem value="disabled" className="text-white focus:bg-slate-700 focus:text-white">Disabled</SelectItem>
                               </SelectContent>
                             </Select>
                           </TableCell>
@@ -421,7 +421,8 @@ export default function TopicsPage() {
                             }}
                             className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ${statusStyles[topic.status]}`}
                           >
-                            {statusIcons[topic.status]} {topic.status}
+                            <span className={`w-2 h-2 rounded-full ${statusDotColors[topic.status]}`} />
+                            {topic.status}
                           </button>
                         </TableCell>
                         <TableCell className="text-slate-400 text-sm max-w-xs truncate">
@@ -542,7 +543,7 @@ export default function TopicsPage() {
                   <SelectContent className="bg-slate-800 border-slate-700">
                     {categories.map((cat) => (
                       <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                        {cat.icon} {cat.name}
+                        {cat.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -558,9 +559,9 @@ export default function TopicsPage() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-slate-800 border-slate-700">
-                    <SelectItem value="active" className="text-white focus:bg-slate-700 focus:text-white">🟢 Active</SelectItem>
-                    <SelectItem value="draft" className="text-white focus:bg-slate-700 focus:text-white">🟡 Draft</SelectItem>
-                    <SelectItem value="disabled" className="text-white focus:bg-slate-700 focus:text-white">🔴 Disabled</SelectItem>
+                    <SelectItem value="active" className="text-white focus:bg-slate-700 focus:text-white">Active</SelectItem>
+                    <SelectItem value="draft" className="text-white focus:bg-slate-700 focus:text-white">Draft</SelectItem>
+                    <SelectItem value="disabled" className="text-white focus:bg-slate-700 focus:text-white">Disabled</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -628,7 +629,7 @@ export default function TopicsPage() {
                 <SelectContent className="bg-slate-800 border-slate-700">
                   {categories.map((cat) => (
                     <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                      {cat.icon} {cat.name}
+                      {cat.name}
                     </SelectItem>
                   ))}
                 </SelectContent>

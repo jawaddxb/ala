@@ -126,19 +126,19 @@ db.exec(`
 
   -- Seed default categories
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('finance', 'Finance & Markets', '💰', 1);
+    ('finance', 'Finance & Markets', NULL, 1);
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('geopolitics', 'Geopolitics', '🌍', 2);
+    ('geopolitics', 'Geopolitics', NULL, 2);
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('philosophy', 'Philosophy & Religion', '🔮', 3);
+    ('philosophy', 'Philosophy & Religion', NULL, 3);
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('technology', 'Technology', '⚡', 4);
+    ('technology', 'Technology', NULL, 4);
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('society', 'Society & Culture', '🏛️', 5);
+    ('society', 'Society & Culture', NULL, 5);
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('crypto', 'Crypto & Blockchain', '₿', 6);
+    ('crypto', 'Crypto & Blockchain', NULL, 6);
   INSERT OR IGNORE INTO categories (id, name, icon, sort_order) VALUES
-    ('personal', 'Personal Development', '🧠', 7);
+    ('personal', 'Personal Development', NULL, 7);
 
   -- Seed default voice profile
   INSERT OR IGNORE INTO voice_profile (id, name, bio, voice_description, example_quotes, directness, hedge_level, disclaimer_mode, opinion_strength, challenge_back, language_notes)

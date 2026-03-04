@@ -211,7 +211,7 @@ export default function KnowledgePage() {
                 <SelectItem value="all" className="text-white focus:bg-slate-700 focus:text-white">All Categories</SelectItem>
                 {categories.map((cat) => (
                   <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                    {cat.icon} {cat.name}
+                    {cat.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -463,7 +463,7 @@ export default function KnowledgePage() {
                   <SelectContent className="bg-slate-800 border-slate-700">
                     {categories.map((cat) => (
                       <SelectItem key={cat.id} value={cat.id} className="text-white focus:bg-slate-700 focus:text-white">
-                        {cat.icon} {cat.name}
+                        {cat.name}
                       </SelectItem>
                     ))}
                   </SelectContent>

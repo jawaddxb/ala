@@ -51,12 +51,12 @@ const navigation = [
     icon: BookOpen,
     description: "Manage corpus",
     children: [
-      { name: "All Sources", href: "/admin/sources", query: null, icon: "📚" },
-      { name: "Quran", href: "/admin/sources", query: "quran", icon: "📖" },
-      { name: "Bible", href: "/admin/sources", query: "bible", icon: "✝️" },
-      { name: "Hadith Bukhari", href: "/admin/sources", query: "hadith_bukhari", icon: "📜" },
-      { name: "Hadith Muslim", href: "/admin/sources", query: "hadith_muslim", icon: "📜" },
-      { name: "Secular", href: "/admin/sources", query: "secular", icon: "💡" },
+      { name: "All Sources", href: "/admin/sources", query: null },
+      { name: "Quran", href: "/admin/sources", query: "quran" },
+      { name: "Bible", href: "/admin/sources", query: "bible" },
+      { name: "Hadith Bukhari", href: "/admin/sources", query: "hadith_bukhari" },
+      { name: "Hadith Muslim", href: "/admin/sources", query: "hadith_muslim" },
+      { name: "Secular", href: "/admin/sources", query: "secular" },
     ],
   },
   {
@@ -131,7 +131,7 @@ export function AdminSidebar() {
                             : "text-slate-500 hover:text-slate-300 hover:bg-slate-700/30"
                         )}
                       >
-                        <span className="text-base">{child.icon}</span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0" />
                         <span>{child.name}</span>
                       </Link>
                     );
