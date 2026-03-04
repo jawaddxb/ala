@@ -3,14 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChatInterface } from '@/components/chat-interface';
-import { PreferenceControls } from '@/components/preference-controls';
-import { SettingsSheet } from '@/components/settings-sheet';
 import { HistorySheet } from '@/components/history-sheet';
-import { Menu, Settings, Sparkles, Moon, Sun, Lightbulb, Quote, RotateCcw, Library } from 'lucide-react';
+import { Menu, Moon, Sun, Sparkles, RotateCcw, Library } from 'lucide-react';
 import { useAlaStore } from '@/lib/store';
 
 export default function Home() {
-  const [showSettings, setShowSettings] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const { messages, clearMessages } = useAlaStore();
@@ -30,17 +27,21 @@ export default function Home() {
         >
           <Menu className="w-5 h-5 text-foreground" strokeWidth={1.5} />
         </button>
-        
+
         <div className="flex items-center gap-2">
           <Sparkles className="w-5 h-5 text-primary" />
           <span className="font-semibold text-lg tracking-tight">ALA</span>
         </div>
-        
+
         <button
-          onClick={() => setShowSettings(true)}
+          onClick={toggleTheme}
           className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-muted transition-colors"
         >
-          <Settings className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+          {isDark ? (
+            <Sun className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+          ) : (
+            <Moon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+          )}
         </button>
       </header>
 
@@ -57,7 +58,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h1 className="font-semibold text-lg tracking-tight">ALA</h1>
-                  <p className="text-xs text-muted-foreground">Choice-conditioned assistant</p>
+                  <p className="text-xs text-muted-foreground">AI Life Assistant</p>
                 </div>
               </div>
               <div className="flex items-center gap-1">
@@ -87,39 +88,18 @@ export default function Home() {
           {/* Sidebar Content */}
           <div className="flex-1 overflow-y-auto scrollbar-thin p-5">
             <div className="space-y-6">
-              {/* Section Title */}
-              <div>
-                <h2 className="text-sm font-medium text-foreground mb-1">Your Preferences</h2>
-                <p className="text-xs text-muted-foreground">Control how ALA responds</p>
-              </div>
-
-              {/* Preference Controls */}
-              <PreferenceControls />
-
-              {/* How It Works Card */}
-              <div className="p-4 bg-card rounded-xl border shadow-sm">
-                <div className="flex items-center gap-2 mb-3">
-                  <Lightbulb className="w-4 h-4 text-amber-500" />
-                  <h3 className="font-medium text-sm">How it works</h3>
+              <div className="p-4 bg-muted/50 border rounded-xl">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Sparkles className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="text-xs">
+                    <p className="font-medium text-foreground mb-1">Direct. Opinionated. Real.</p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      ALA speaks with conviction — backed by knowledge, not platitudes.
+                    </p>
+                  </div>
                 </div>
-                <ul className="text-xs text-muted-foreground space-y-2">
-                  <li className="flex gap-2">
-                    <span className="text-primary font-semibold">1.</span>
-                    Every response starts with a neutral, factual answer
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary font-semibold">2.</span>
-                    If you enable a perspective, an optional reflection is added
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary font-semibold">3.</span>
-                    You control this completely — change anytime
-                  </li>
-                  <li className="flex gap-2">
-                    <span className="text-primary font-semibold">4.</span>
-                    ALA never suggests you change your settings
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
@@ -127,7 +107,7 @@ export default function Home() {
           {/* Sidebar Footer */}
           <div className="p-4 border-t border-border space-y-3">
             {/* Knowledge Library Link */}
-            <Link 
+            <Link
               href="/knowledge"
               className="flex items-center gap-3 p-3 rounded-xl border border-border hover:border-primary/50 hover:bg-muted/50 transition-colors group"
             >
@@ -139,14 +119,6 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">Browse source texts</p>
               </div>
             </Link>
-            
-            <div className="flex items-start gap-3 p-3 bg-primary/5 rounded-xl border border-primary/10">
-              <Quote className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <p className="text-xs text-muted-foreground">
-                <span className="font-medium text-foreground">Freedom of choice.</span>{' '}
-                Your path is your own.
-              </p>
-            </div>
           </div>
         </aside>
 
@@ -156,8 +128,7 @@ export default function Home() {
         </main>
       </div>
 
-      {/* Mobile Sheets */}
-      <SettingsSheet open={showSettings} onClose={() => setShowSettings(false)} />
+      {/* Mobile Sheet */}
       <HistorySheet open={showHistory} onClose={() => setShowHistory(false)} />
     </div>
   );

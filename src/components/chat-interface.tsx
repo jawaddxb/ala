@@ -2,15 +2,10 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useAlaStore, type Message } from '@/lib/store';
-import { PERSPECTIVES, INTENSITY_LABELS, type Intensity } from '@/lib/prompts';
 import { Button } from '@/components/ui/button';
-import { 
-  Send, 
-  ChevronDown, 
-  ChevronUp, 
-  Layers, 
+import {
+  Send,
   Sparkles,
-  MessageCircle,
   Compass,
   Heart,
   Lightbulb,
@@ -22,14 +17,12 @@ export function ChatInterface() {
   const [input, setInput] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  
+
   const {
     messages,
     addMessage,
     isLoading,
     setIsLoading,
-    perspective,
-    intensity,
   } = useAlaStore();
 
   useEffect(() => {
@@ -44,7 +37,7 @@ export function ChatInterface() {
 
     const userMessage = input.trim();
     setInput('');
-    
+
     addMessage({ role: 'user', content: userMessage });
     setIsLoading(true);
 
@@ -57,26 +50,16 @@ export function ChatInterface() {
             ...messages.map(m => ({ role: m.role, content: m.content })),
             { role: 'user', content: userMessage },
           ],
-          perspective,
-          intensity,
         }),
       });
 
       if (!response.ok) throw new Error('Failed to get response');
 
       const text = await response.text();
-      
-      const parts = text.split('───────────────────');
-      const neutralAnswer = parts[0]?.trim();
-      const reflection = parts[1]?.trim();
 
       addMessage({
         role: 'assistant',
         content: text,
-        neutralAnswer,
-        reflection,
-        perspectiveUsed: perspective,
-        intensityUsed: intensity,
       });
     } catch (error) {
       console.error('Chat error:', error);
@@ -98,16 +81,8 @@ export function ChatInterface() {
 
   return (
     <div className="flex flex-col h-full bg-background">
-      {/* Desktop Header - shown on large screens */}
-      <div className="hidden lg:flex items-center justify-center py-4 border-b border-border">
-        <div className="flex items-center gap-2 text-muted-foreground">
-          <MessageCircle className="w-4 h-4" />
-          <span className="text-sm">Conversation</span>
-        </div>
-      </div>
-
       {/* Messages Area */}
-      <div 
+      <div
         className="flex-1 overflow-y-auto scrollbar-none"
         ref={scrollRef}
       >
@@ -175,22 +150,22 @@ export function ChatInterface() {
 }
 
 function EmptyState() {
-  const { perspective, intensity, setIsLoading, addMessage } = useAlaStore();
-  
+  const { setIsLoading, addMessage, messages } = useAlaStore();
+
   const suggestions = [
-    { 
+    {
       icon: <Compass className="w-5 h-5" />,
       title: "Life decisions",
       prompt: "How do I make a big decision when I'm uncertain?",
       color: "bg-blue-50 text-blue-600 dark:bg-blue-900/20"
     },
-    { 
+    {
       icon: <Heart className="w-5 h-5" />,
       title: "Relationships",
       prompt: "How can I have difficult conversations with loved ones?",
       color: "bg-rose-50 text-rose-600 dark:bg-rose-900/20"
     },
-    { 
+    {
       icon: <Lightbulb className="w-5 h-5" />,
       title: "Productivity",
       prompt: "How can I be more productive without burning out?",
@@ -207,24 +182,20 @@ function EmptyState() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: [{ role: 'user', content: prompt }],
-          perspective,
-          intensity,
+          messages: [
+            ...messages.map(m => ({ role: m.role, content: m.content })),
+            { role: 'user', content: prompt },
+          ],
         }),
       });
 
       if (!response.ok) throw new Error('Failed');
 
-      const responseText = await response.text();
-      const parts = responseText.split('───────────────────');
-      
+      const text = await response.text();
+
       addMessage({
         role: 'assistant',
-        content: responseText,
-        neutralAnswer: parts[0]?.trim(),
-        reflection: parts[1]?.trim(),
-        perspectiveUsed: perspective,
-        intensityUsed: intensity,
+        content: text,
       });
     } catch {
       addMessage({
@@ -247,15 +218,10 @@ function EmptyState() {
           Welcome to ALA
         </h1>
         <p className="text-muted-foreground max-w-md mx-auto">
-          Ask anything. Get neutral, factual answers.
-          {perspective !== 'none' && intensity > 0 && (
-            <span className="block mt-1 text-primary">
-              Plus thoughtful reflections when you want them.
-            </span>
-          )}
+          Ask anything. Get direct, opinionated answers.
         </p>
       </div>
-      
+
       {/* Suggestion Cards */}
       <div className="w-full max-w-2xl">
         <p className="text-sm text-muted-foreground mb-4">Try asking about...</p>
@@ -287,10 +253,7 @@ function EmptyState() {
 }
 
 function MessageBubble({ message }: { message: Message }) {
-  const [isExpanded, setIsExpanded] = useState(false);
   const isUser = message.role === 'user';
-  const hasReflection = message.reflection && message.perspectiveUsed !== 'none' && message.intensityUsed && message.intensityUsed > 0;
-  const perspectiveLabel = PERSPECTIVES.find(p => p.value === message.perspectiveUsed)?.label?.split(' ')[0];
 
   if (isUser) {
     return (
@@ -307,46 +270,12 @@ function MessageBubble({ message }: { message: Message }) {
       <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1">
         <Sparkles className="w-4 h-4 text-primary" />
       </div>
-      <div className="flex-1 min-w-0 space-y-3">
-        {/* Core Answer */}
+      <div className="flex-1 min-w-0">
         <div className="bg-surface rounded-2xl rounded-tl-md p-4 lg:p-5">
           <p className="text-body text-primary whitespace-pre-wrap leading-relaxed">
-            {message.neutralAnswer || message.content}
+            {message.content}
           </p>
         </div>
-
-        {/* Reflection Toggle */}
-        {hasReflection && (
-          <div className="max-w-full">
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className={cn(
-                "reflection-toggle w-full",
-                isExpanded && "rounded-b-none border-b-0"
-              )}
-            >
-              <div className="flex items-center gap-2">
-                <Layers className="w-4 h-4 text-muted" strokeWidth={1.5} />
-                <span className="text-caption text-muted-foreground">
-                  Reflection • {perspectiveLabel} • Level {message.intensityUsed}
-                </span>
-              </div>
-              {isExpanded ? (
-                <ChevronUp className="w-4 h-4 text-muted" strokeWidth={1.5} />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-muted" strokeWidth={1.5} />
-              )}
-            </button>
-
-            {isExpanded && (
-              <div className="reflection-content animate-slide-down">
-                <p className="text-reflection-foreground whitespace-pre-wrap">
-                  {message.reflection}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );

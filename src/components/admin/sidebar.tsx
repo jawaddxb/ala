@@ -9,14 +9,41 @@ import {
   Users,
   Settings,
   ChevronRight,
+  Lightbulb,
+  Mic,
+  LayoutGrid,
 } from "lucide-react";
 
 const navigation = [
-  { 
-    name: "Dashboard", 
-    href: "/admin", 
+  {
+    name: "Dashboard",
+    href: "/admin",
     icon: LayoutDashboard,
     description: "Overview & stats"
+  },
+  {
+    name: "Thesis",
+    href: "/admin/thesis",
+    icon: Lightbulb,
+    description: "Worldview positions"
+  },
+  {
+    name: "Voice",
+    href: "/admin/voice",
+    icon: Mic,
+    description: "Voice & personality"
+  },
+  {
+    name: "Topics",
+    href: "/admin/topics",
+    icon: LayoutGrid,
+    description: "Topic management"
+  },
+  {
+    name: "Knowledge",
+    href: "/admin/knowledge",
+    icon: BookOpen,
+    description: "Knowledge library"
   },
   {
     name: "Sources",
@@ -32,15 +59,15 @@ const navigation = [
       { name: "Secular", href: "/admin/sources", query: "secular", icon: "💡" },
     ],
   },
-  { 
-    name: "Users", 
-    href: "/admin/users", 
+  {
+    name: "Users",
+    href: "/admin/users",
     icon: Users,
     description: "Manage accounts"
   },
-  { 
-    name: "Settings", 
-    href: "/admin/settings", 
+  {
+    name: "Settings",
+    href: "/admin/settings",
     icon: Settings,
     description: "Configuration"
   },
