@@ -48,19 +48,26 @@ const SOURCE_CONFIG: Record<string, {
     description: 'Hebrew Bible - JPS Translation',
     verification: 'Source: Sefaria.org API • Translation: JPS TANAKH Gender-Sensitive Edition (2023)'
   },
-  hadith_bukhari: { 
+  'hadith-bukhari': { 
     icon: <Library className="w-5 h-5" />, 
     label: 'Sahih al-Bukhari',
     color: 'bg-purple-500',
     description: 'Authentic Hadith Collection by Imam Bukhari',
     verification: 'Source: Sunnah.com • Grade: Sahih (Authentic) - Most authenticated hadith collection'
   },
-  hadith_muslim: { 
+  'hadith-muslim': { 
     icon: <Library className="w-5 h-5" />, 
     label: 'Sahih Muslim',
     color: 'bg-pink-500',
     description: 'Authentic Hadith Collection by Imam Muslim',
     verification: 'Source: Sunnah.com • Grade: Sahih (Authentic) - Second most authenticated collection'
+  },
+  secular: {
+    icon: <Library className="w-5 h-5" />,
+    label: 'Secular Wisdom',
+    color: 'bg-gray-500',
+    description: 'Stoics, Austrian economists, and Bitcoin thinkers',
+    verification: 'Source: Public domain works — Marcus Aurelius, Taleb, Hayek, Nakamoto, and others'
   },
 };
 

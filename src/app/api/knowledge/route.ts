@@ -19,8 +19,9 @@ const SOURCE_LABELS: Record<string, string> = {
   quran: 'Quran',
   bible: 'Bible (KJV)',
   torah: 'Torah/Tanakh',
-  hadith_bukhari: 'Sahih al-Bukhari',
-  hadith_muslim: 'Sahih Muslim',
+  'hadith-bukhari': 'Sahih al-Bukhari',
+  'hadith-muslim': 'Sahih Muslim',
+  secular: 'Secular Wisdom',
 };
 
 export async function GET(request: NextRequest) {
@@ -54,9 +55,16 @@ export async function GET(request: NextRequest) {
 
     if (search) {
       const terms = search.trim().split(/\s+/).filter(Boolean);
-      for (const term of terms) {
-        whereClause += ' AND (text LIKE ? OR reference LIKE ?)';
-        params.push(`%${term}%`, `%${term}%`);
+      if (terms.length === 1) {
+        whereClause += ' AND (text LIKE ? OR reference LIKE ? OR book LIKE ?)';
+        params.push(`%${terms[0]}%`, `%${terms[0]}%`, `%${terms[0]}%`);
+      } else {
+        // Multi-keyword: OR across all terms (any term match returns results)
+        const termClauses = terms.map(() => '(text LIKE ? OR reference LIKE ? OR book LIKE ?)');
+        whereClause += ` AND (${termClauses.join(' OR ')})`;
+        for (const term of terms) {
+          params.push(`%${term}%`, `%${term}%`, `%${term}%`);
+        }
       }
     }
 
@@ -66,7 +74,7 @@ export async function GET(request: NextRequest) {
 
     // Get paginated results
     const offset = (page - 1) * limit;
-    const orderBy = source === 'hadith_bukhari' || source === 'hadith_muslim'
+    const orderBy = source === 'hadith-bukhari' || source === 'hadith-muslim'
       ? 'number ASC'
       : 'chapter ASC, verse ASC';
     
