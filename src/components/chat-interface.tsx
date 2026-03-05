@@ -249,30 +249,40 @@ function EmptyState() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[62vh] text-center select-none">
-      {/* Mark + headline */}
+      {/* Typographic mark — no logo image, lead with the word */}
       <div className="mb-10">
-        <div
-          className="mx-auto mb-6 rounded-xl overflow-hidden"
-          style={{ width: 60, height: 60, boxShadow: '0 2px 12px rgba(42,116,112,0.15)' }}
-        >
-          <img src="/ala-logo.jpg" alt="ALA" className="w-full h-full object-cover" />
+        <div className="mb-5 flex items-center justify-center gap-3">
+          <div style={{ width: 40, height: 1, background: '#d0cbc2' }} />
+          <span
+            style={{
+              fontFamily: 'var(--font-fraunces), Georgia, serif',
+              fontSize: '0.7rem',
+              fontWeight: 500,
+              color: '#b0a89e',
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+            }}
+          >
+            ALA®
+          </span>
+          <div style={{ width: 40, height: 1, background: '#d0cbc2' }} />
         </div>
 
         <h1
           className="mb-3"
           style={{
             fontFamily: 'var(--font-fraunces), Georgia, serif',
-            fontSize: '2rem',
+            fontSize: '2.1rem',
             fontWeight: 600,
             color: '#1a2e2c',
-            letterSpacing: '-0.02em',
-            lineHeight: 1.2,
+            letterSpacing: '-0.025em',
+            lineHeight: 1.15,
           }}
         >
           Ask. Get an answer.
         </h1>
-        <p className="text-sm" style={{ color: '#9a9388', maxWidth: 320, margin: '0 auto' }}>
-          Direct answers, backed by 58,083 verified sources.
+        <p className="text-sm" style={{ color: '#9a9388', maxWidth: 300, margin: '0 auto', lineHeight: 1.6 }}>
+          Direct answers backed by 58,083 verified sources.<br/>No hedging. No hallucination.
         </p>
       </div>
 
