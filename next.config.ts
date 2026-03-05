@@ -5,8 +5,9 @@ const nextConfig: NextConfig = {
   experimental: {
     instrumentationHook: true,
   },
+  outputFileTracingIncludes: {
+    "/**": ["./data/**"],
+  },
 };
 
 export default nextConfig;
-
-// Force rebuild: $(date +%s)
