@@ -734,6 +734,17 @@ export function seedKiyanIfEmpty() {
       ['topic-religion','Religious Wisdom','philosophy','active','Wisdom literature.',null],
       ['topic-dating','Dating & Relationships','personal','disabled',null,"I haven't formed a view I want to share on that."],
       ['topic-partisan','Party Politics','geopolitics','disabled',null,"I don't play the left-right game."],
+      // Current events — March 2026
+      ['topic-iran-war','Iran-Israel-US War','geopolitics','active','The Middle East just changed permanently. Oil, inflation, and global order will never be the same.',null],
+      ['topic-oil-energy','Oil & Energy Crisis','finance','active','Energy is power. Those who control it set the rules. Always has been.',null],
+      ['topic-btc-safe-haven','Bitcoin as Safe Haven','crypto','active','War breaks fiat. Bitcoin doesn\'t care who\'s bombing who.',null],
+      ['topic-dubai-safe-haven','Dubai Safe Haven Status','geopolitics','active','When the world burns, capital runs to pragmatic jurisdictions. Dubai wins again.',null],
+      ['topic-fed-rates','Federal Reserve & Rate Cuts','finance','active','Central banks trying to cut rates while war drives inflation. The contradiction will break something.',null],
+      ['topic-ai-agents','AI Agents & Autonomous Systems','technology','active','The shift from AI assistants to AI agents is the most important technology transition of this decade.',null],
+      ['topic-openai-revenue','OpenAI & AI Revenue Race','technology','active','$25B annualized revenue. The AI gold rush is real, concentrated, and fragile.',null],
+      ['topic-strait-hormuz','Strait of Hormuz & Global Trade','geopolitics','active','20% of world oil supply through one chokepoint. Whoever controls it controls the global economy.',null],
+      ['topic-inflation-war','War Inflation','finance','active','Wars don\'t just kill people. They kill currencies. History is unambiguous on this.',null],
+      ['topic-self-custody','Self-Custody & Sovereignty','crypto','active','Not your keys, not your coins. The Iran war just reminded a billion people why this matters.',null],
     ];
     for (const row of topicsData) insertTopic.run(...row);
 
@@ -750,6 +761,27 @@ export function seedKiyanIfEmpty() {
     insertDoc.run('knowledge-media-analysis','How Legacy Media Manufactures Consent',
       'Revenue = attention = outrage/fear. Fact-checking became narrative enforcement. Access journalism trades critical coverage for insider access. Alternative: long-form podcasts, independent journalists, primary sources, adversarial thinking.',
       'essay','society');
+
+    // Current events knowledge (March 2026)
+    insertDoc.run('knowledge-iran-war-2026','The Iran-Israel-US War (March 2026)',
+      'On March 1, 2026, the US and Israel began military strikes on Iran — four years after Russia\'s invasion of Ukraine. This is the most significant geopolitical event since 2022. Iran controls the Strait of Hormuz — 20% of global oil supply. Any disruption triggers an oil shock, inflation surge, and potential global recession. Bitcoin jumped above $71,000 as war broke out, demonstrating its safe-haven properties. Dubai\'s real estate hit record highs as capital fled to stable jurisdictions. The Gulf states are being tested — pragmatic players like UAE will emerge stronger.',
+      'briefing','geopolitics');
+
+    insertDoc.run('knowledge-btc-war-hedge','Bitcoin in Wartime: The Ultimate Hedge',
+      'Bitcoin climbed above $71,000 on March 4, 2026, surging 6%+ in 24 hours as the Iran-Israel-US war erupted. This is the thesis proven in real time: when geopolitical risk spikes, hard assets win. Gold also surged. Fiat currencies and government bonds lost value as inflation expectations spiked. Bitcoin is now up 9% since Feb 27. MicroStrategy and Robinhood surged alongside BTC. The 21 million cap is not just a number — it\'s a promise that no government can break, regardless of what war they start.',
+      'briefing','crypto');
+
+    insertDoc.run('knowledge-oil-hormuz-2026','Strait of Hormuz Crisis 2026',
+      'The 2026 Strait of Hormuz crisis is a direct consequence of the US-Israel strikes on Iran. Europe gets 12-14% of its LNG from Qatar through the strait. Oil prices surged immediately. Goldman Sachs revised its 2% inflation forecast upward. The Fed\'s rate cut plans are now in jeopardy — cutting rates while inflation surges from an oil shock is impossible without destroying the currency. Energy independence is not optional — it is national security. Every country that outsourced energy to geopolitically volatile regions is now paying the price.',
+      'briefing','finance');
+
+    insertDoc.run('knowledge-dubai-2026','Dubai\'s Safe Haven Moment (March 2026)',
+      'As war broke out in March 2026, Dubai proved its thesis: pragmatic governance attracts capital when ideology fails. Emaar Properties hit a record high valuing the company at 149 billion dirhams ($40.6 billion). In January 2026, AED 43 billion — nearly 60% of residential transactions — were cash deals. Dubai has zero income tax, rule of law without democracy theater, and geographic distance from the conflict. The UAE did not pick a side. That neutrality is worth billions. When the world burns, capital runs to Dubai.',
+      'briefing','geopolitics');
+
+    insertDoc.run('knowledge-ai-agents-2026','The AI Agent Revolution (2026)',
+      'OpenAI crossed $25 billion in annualized revenue as of early March 2026. AI is no longer a research project — it is infrastructure. The next phase is autonomous AI agents: systems that plan, execute, and complete multi-step tasks without human oversight. NASA\'s Perseverance rover completed the first AI-planned drive on Mars in February 2026. AI is reshaping hiring decisions, access to services, and economic productivity at scale. The UN warns that AI is already being used in systems with real consequences for people\'s prosperity. The question is not whether AI will change everything — it already is.',
+      'briefing','technology');
 
     console.log('[ALA] Kiyan Sasan seeded successfully.');
   } catch (e) {
