@@ -92,7 +92,7 @@ export default function SourcesPage() {
   const [actionLoading, setActionLoading] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
-  const limit = 20;
+  const limit = 50;
 
   // Debounce search
   useEffect(() => {
@@ -418,83 +418,56 @@ export default function SourcesPage() {
           </CardContent>
         </Card>
       ) : (
-        <div className="grid gap-4">
-          {sources.map((source) => {
-            const style = sourceStyles[source.source] || { bg: "bg-muted/50", text: "text-muted-foreground", border: "border-border/50" };
-
-            return (
-              <Card
-                key={source.id}
-                className={`bg-card/50 border-border hover:border-input transition-all duration-200 group`}
-              >
-                <CardHeader className="pb-3">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                    <div className="space-y-2 flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <Badge
-                          variant="secondary"
-                          className={`${style.bg} ${style.text} border-0 text-xs`}
-                        >
-                          {source.source.replace("_", " ")}
+        <Card className="bg-card/50 border-border overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border/50 bg-secondary/30">
+                  <th className="text-left px-4 py-3 text-xs font-medium text-muted-foreground uppercase tracking-wide w-[200px]">Reference</th>
+                  <th className="text-left px-4 py-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Text</th>
+                  <th className="text-left px-4 py-3 text-xs font-medium text-muted-foreground uppercase tracking-wide w-[120px]">Source</th>
+                  <th className="text-right px-4 py-3 text-xs font-medium text-muted-foreground uppercase tracking-wide w-[100px]">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-border/30">
+                {sources.map((source) => {
+                  const style = sourceStyles[source.source] || { bg: "bg-muted/50", text: "text-muted-foreground", border: "border-border/50" };
+                  return (
+                    <tr key={source.id} className="hover:bg-secondary/20 transition-colors group">
+                      <td className="px-4 py-2.5 align-top">
+                        <span className="font-medium text-foreground text-xs leading-tight block">{source.reference}</span>
+                        {source.book && <span className="text-muted-foreground text-xs block truncate max-w-[180px]">{source.book}</span>}
+                      </td>
+                      <td className="px-4 py-2.5 align-top max-w-0">
+                        <p className="text-muted-foreground text-xs leading-relaxed line-clamp-2">
+                          {source.text}
+                        </p>
+                      </td>
+                      <td className="px-4 py-2.5 align-top">
+                        <Badge variant="secondary" className={`${style.bg} ${style.text} border-0 text-xs whitespace-nowrap`}>
+                          {source.source.replace(/-/g, " ")}
                         </Badge>
-                        {source.category && (
-                          <Badge variant="secondary" className="bg-secondary/50 text-muted-foreground border-0 text-xs">
-                            {source.category}
-                          </Badge>
-                        )}
-                      </div>
-                      <CardTitle className="text-lg text-foreground font-medium">
-                        {source.reference}
-                      </CardTitle>
-                    </div>
-                    <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-secondary"
-                        onClick={() => copyToClipboard(source.text, source.id)}
-                      >
-                        {copiedId === source.id ? (
-                          <CheckCircle className="w-4 h-4 text-primary" />
-                        ) : (
-                          <Copy className="w-4 h-4" />
-                        )}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-secondary"
-                        onClick={() => {
-                          setEditSource(source);
-                          setShowEdit(true);
-                        }}
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-red-400 hover:text-red-300 hover:bg-red-500/20"
-                        onClick={() => {
-                          setDeleteSource(source);
-                          setShowDelete(true);
-                        }}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground leading-relaxed whitespace-pre-wrap">
-                    {source.text.length > 500 ? `${source.text.slice(0, 500)}...` : source.text}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-3 font-mono">ID: {source.id}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                      </td>
+                      <td className="px-4 py-2.5 align-top text-right">
+                        <div className="flex gap-1 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-secondary" onClick={() => copyToClipboard(source.text, source.id)}>
+                            {copiedId === source.id ? <CheckCircle className="w-3.5 h-3.5 text-primary" /> : <Copy className="w-3.5 h-3.5" />}
+                          </Button>
+                          <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-secondary" onClick={() => { setEditSource(source); setShowEdit(true); }}>
+                            <Pencil className="w-3.5 h-3.5" />
+                          </Button>
+                          <Button variant="ghost" size="icon" className="h-7 w-7 text-red-400 hover:text-red-300 hover:bg-red-500/20" onClick={() => { setDeleteSource(source); setShowDelete(true); }}>
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </Button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       )}
 
       {/* Bottom Pagination */}

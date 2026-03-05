@@ -264,8 +264,12 @@ export function getSources(options: {
   }
   
   if (search) {
-    whereClause += ' AND (text LIKE ? OR reference LIKE ?)';
-    params.push(`%${search}%`, `%${search}%`);
+    // Multi-keyword search: split on whitespace and require ALL terms to match
+    const terms = search.trim().split(/\s+/).filter(Boolean);
+    for (const term of terms) {
+      whereClause += ' AND (text LIKE ? OR reference LIKE ? OR book LIKE ?)';
+      params.push(`%${term}%`, `%${term}%`, `%${term}%`);
+    }
   }
   
   // Get total count
