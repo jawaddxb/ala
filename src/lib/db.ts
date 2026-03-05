@@ -797,7 +797,7 @@ function seedScriptureIfEmpty() {
 
     console.log('[ALA] Seeding scripture corpus...');
 
-    const sources = ['quran', 'torah', 'bible', 'secular'];
+    const sources = ['quran', 'torah', 'bible', 'secular', 'hadith-bukhari', 'hadith-muslim'];
     const insertSource = db.prepare(`
       INSERT OR REPLACE INTO sources (id, reference, text, source, book, chapter, verse, number, category)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -831,9 +831,45 @@ function seedScriptureIfEmpty() {
   }
 }
 
+// Seed any missing scripture categories (safe to run when DB has partial data)
+function seedMissingCategories() {
+  try {
+    const supplementalSources = ['hadith-bukhari', 'hadith-muslim'];
+    const insertSource = db.prepare(`
+      INSERT OR REPLACE INTO sources (id, reference, text, source, book, chapter, verse, number, category)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+    for (const src of supplementalSources) {
+      const existing = (db.prepare('SELECT COUNT(*) as c FROM sources WHERE category = ?').get(src) as { c: number }).c;
+      if (existing > 0) continue; // already seeded
+
+      const seedFile = path.join(process.cwd(), 'data', `seed-${src}.json`);
+      if (!fs.existsSync(seedFile)) {
+        console.log(`[ALA] Supplemental seed file missing: seed-${src}.json — skipping`);
+        continue;
+      }
+      const rows = JSON.parse(fs.readFileSync(seedFile, 'utf-8')) as Array<{
+        id: string; reference: string; text: string; source: string;
+        book: string | null; chapter: number | null; verse: number | null;
+        number: number | null; category: string;
+      }>;
+      const insertMany = db.transaction((items: typeof rows) => {
+        for (const r of items) {
+          insertSource.run(r.id, r.reference, r.text, r.source, r.book, r.chapter, r.verse, r.number, r.category);
+        }
+      });
+      insertMany(rows);
+      console.log(`[ALA] Supplemental seed ✓ ${src}: ${rows.length} entries`);
+    }
+  } catch (e) {
+    console.error('[ALA] Supplemental seed error:', e);
+  }
+}
+
 // Call on module load
 initializeDefaultAdmin();
 seedKiyanIfEmpty();
 seedScriptureIfEmpty();
+seedMissingCategories();
 
 export default db;
