@@ -1,1 +1,40 @@
-import { NextResponse } from \'next/server\';\nimport path from \'path\';\nimport fs from \'fs\';\nimport { default as db, seedScriptureIfEmpty } from \'../../../lib/db\'; // Import the db and seed function\n\nexport async function GET() {\n  const cwd = process.cwd();\n  const dataDir = path.join(cwd, \'data\');\n\n  console.log(\`[DEBUG-SEED] CWD: \${cwd}\`);\n  console.log(\`[DEBUG-SEED] Data Dir: \${dataDir}\`);\n  console.log(\`[DEBUG-SEED] Data Dir Exists: \${fs.existsSync(dataDir)}\`);\n  \n  if (fs.existsSync(dataDir)) {\n    console.log(\`[DEBUG-SEED] Data Dir Contents: \${fs.readdirSync(dataDir).join(\', \')}\`);\n  } else {\n    console.log(\'[DEBUG-SEED] Data directory does NOT exist.\');\n  }\n\n  // Force the seed to run\n  seedScriptureIfEmpty();\n\n  const currentSourcesCount = (db.prepare(\'SELECT COUNT(*) as c FROM sources\').get() as { c: number }).c;\n\n  const seedFiles: Record<string, number | string> = {};\n  for (const f of [\'seed-quran.json\',\'seed-torah.json\',\'seed-bible.json\',\'seed-secular.json\']) {\n    const fp = path.join(dataDir, f);\n    if (fs.existsSync(fp)) {\n      seedFiles[f] = Math.round(fs.statSync(fp).size / 1024) + \'KB\';\n    } else {\n      seedFiles[f] = \'MISSING\';\n    }\n  }\n  \n  return NextResponse.json({\n    cwd,\n    dataDir,\n    dataExists: fs.existsSync(dataDir),\n    seedFiles,\n    currentSourcesCount,\n    seedInvoked: true,\n  });\n}\n
+import { NextResponse } from 'next/server';
+import path from 'path';
+import fs from 'fs';
+import db, { seedScriptureIfEmpty } from '../../../lib/db';
+
+export async function GET() {
+  const cwd = process.cwd();
+  const dataDir = path.join(cwd, 'data');
+
+  console.log(`[DEBUG-SEED] CWD: ${cwd}`);
+  console.log(`[DEBUG-SEED] Data Dir: ${dataDir}`);
+  console.log(`[DEBUG-SEED] Data Dir Exists: ${fs.existsSync(dataDir)}`);
+
+  if (fs.existsSync(dataDir)) {
+    console.log(`[DEBUG-SEED] Data Dir Contents: ${fs.readdirSync(dataDir).join(', ')}`);
+  } else {
+    console.log('[DEBUG-SEED] Data directory does NOT exist.');
+  }
+
+  seedScriptureIfEmpty();
+
+  const currentSourcesCount = (db.prepare('SELECT COUNT(*) as c FROM sources').get() as { c: number }).c;
+
+  const seedFiles: Record<string, string> = {};
+  for (const f of ['seed-quran.json', 'seed-torah.json', 'seed-bible.json', 'seed-secular.json']) {
+    const fp = path.join(dataDir, f);
+    seedFiles[f] = fs.existsSync(fp)
+      ? Math.round(fs.statSync(fp).size / 1024) + 'KB'
+      : 'MISSING';
+  }
+
+  return NextResponse.json({
+    cwd,
+    dataDir,
+    dataExists: fs.existsSync(dataDir),
+    seedFiles,
+    currentSourcesCount,
+    seedInvoked: true,
+  });
+}
