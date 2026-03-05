@@ -250,9 +250,9 @@ function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[62vh] text-center select-none">
       {/* Typographic mark — no logo image, lead with the word */}
-      <div className="mb-10">
-        <div className="mb-5 flex items-center justify-center gap-3">
-          <div style={{ width: 40, height: 1, background: '#d0cbc2' }} />
+      <div className="mb-7">
+        <div className="mb-4 flex items-center justify-center gap-3">
+          <div style={{ width: 30, height: 1, background: '#d0cbc2' }} />
           <span
             style={{
               fontFamily: 'var(--font-fraunces), Georgia, serif',
@@ -265,11 +265,11 @@ function EmptyState() {
           >
             ALA®
           </span>
-          <div style={{ width: 40, height: 1, background: '#d0cbc2' }} />
+          <div style={{ width: 30, height: 1, background: '#d0cbc2' }} />
         </div>
 
         <h1
-          className="mb-3"
+          className="mb-2"
           style={{
             fontFamily: 'var(--font-fraunces), Georgia, serif',
             fontSize: '2.1rem',
@@ -281,13 +281,13 @@ function EmptyState() {
         >
           Ask. Get an answer.
         </h1>
-        <p className="text-sm" style={{ color: '#9a9388', maxWidth: 300, margin: '0 auto', lineHeight: 1.6 }}>
-          Direct answers backed by 58,083 verified sources.<br/>No hedging. No hallucination.
+        <p className="text-sm" style={{ color: '#9a9388', maxWidth: 380, margin: '0 auto', lineHeight: 1.6 }}>
+          Direct answers backed by 58,083 verified sources. No hedging. No hallucination.
         </p>
       </div>
 
       {/* Suggestions — editorial list, no icons */}
-      <div className="w-full max-w-lg space-y-2">
+      <div className="w-full max-w-lg space-y-2 mt-7">
         {SUGGESTIONS.map((s) => (
           <button
             key={s.title}
