@@ -32,8 +32,8 @@ export default function AdminDashboard() {
         <Card className="border-border bg-card hover:shadow-sm transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2 pt-5 px-5">
             <CardTitle className="text-sm font-medium text-muted-foreground">Total Sources</CardTitle>
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Database className="h-4 w-4 text-primary" />
+            <div className="p-2 bg-muted rounded-lg">
+              <Database className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
           <CardContent className="px-5 pb-5">
@@ -45,8 +45,8 @@ export default function AdminDashboard() {
         <Card className="border-border bg-card hover:shadow-sm transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2 pt-5 px-5">
             <CardTitle className="text-sm font-medium text-muted-foreground">Categories</CardTitle>
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <BookOpen className="h-4 w-4 text-primary" />
+            <div className="p-2 bg-muted rounded-lg">
+              <BookOpen className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
           <CardContent className="px-5 pb-5">
@@ -58,8 +58,8 @@ export default function AdminDashboard() {
         <Card className="border-border bg-card hover:shadow-sm transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2 pt-5 px-5">
             <CardTitle className="text-sm font-medium text-muted-foreground">Total Users</CardTitle>
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <Users className="h-4 w-4 text-primary" />
+            <div className="p-2 bg-muted rounded-lg">
+              <Users className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
           <CardContent className="px-5 pb-5">
@@ -71,8 +71,8 @@ export default function AdminDashboard() {
         <Card className="border-border bg-card hover:shadow-sm transition-all duration-200">
           <CardHeader className="flex flex-row items-center justify-between pb-2 pt-5 px-5">
             <CardTitle className="text-sm font-medium text-muted-foreground">Administrators</CardTitle>
-            <div className="p-2 bg-primary/10 rounded-lg">
-              <TrendingUp className="h-4 w-4 text-primary" />
+            <div className="p-2 bg-muted rounded-lg">
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
             </div>
           </CardHeader>
           <CardContent className="px-5 pb-5">
@@ -102,8 +102,8 @@ export default function AdminDashboard() {
                 <Card className="border-border bg-card hover:border-primary/30 hover:shadow-sm transition-all duration-200 cursor-pointer group h-full">
                   <CardHeader className="pb-3 pt-4 px-4">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
-                        <span className="text-xs font-semibold text-primary">{source.name.charAt(0)}</span>
+                      <div className="w-7 h-7 rounded-md bg-muted flex items-center justify-center shrink-0">
+                        <span className="text-xs font-semibold text-muted-foreground">{source.name.charAt(0)}</span>
                       </div>
                       <div className="min-w-0">
                         <CardTitle className="text-sm font-medium text-foreground group-hover:text-primary transition-colors truncate">
@@ -118,7 +118,7 @@ export default function AdminDashboard() {
                   <CardContent className="pt-0 px-4 pb-4">
                     <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-primary rounded-full transition-all duration-500"
+                        className="h-full bg-foreground/20 rounded-full transition-all duration-500"
                         style={{ width: `${Math.min(parseFloat(percentage), 100)}%` }}
                       />
                     </div>
