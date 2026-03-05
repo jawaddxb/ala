@@ -29,9 +29,12 @@ export default function Home() {
           <Menu className="w-5 h-5 text-foreground" strokeWidth={1.5} />
         </button>
 
-        <div className="flex items-center gap-2">
-          <Image src="/ala-logo.jpg" alt="ALA" width={32} height={32} className="rounded-lg" />
-          <span className="font-semibold text-lg tracking-tight">ALA</span>
+        <div className="flex items-center">
+          <img
+            src="/ala-logo.jpg"
+            alt="ALA — Freedom of Choice"
+            style={{ width: 80, height: 'auto', borderRadius: 10, display: 'block', objectFit: 'contain' }}
+          />
         </div>
 
         <button
@@ -54,11 +57,11 @@ export default function Home() {
           <div className="p-5 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Image src="/ala-logo.jpg" alt="ALA" width={40} height={40} className="rounded-xl shadow-sm" />
-                <div>
-                  <h1 className="font-semibold text-lg tracking-tight">ALA</h1>
-                  <p className="text-xs text-muted-foreground">Ask. Learn. Act.</p>
-                </div>
+                <img
+                  src="/ala-logo.jpg"
+                  alt="ALA — Freedom of Choice"
+                  style={{ width: 120, height: 'auto', borderRadius: 12, display: 'block', objectFit: 'contain' }}
+                />
               </div>
               <div className="flex items-center gap-1">
                 {messages.length > 0 && (

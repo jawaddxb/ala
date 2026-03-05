@@ -211,12 +211,13 @@ function EmptyState() {
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
       {/* Hero */}
       <div className="mb-8">
-        <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 mx-auto">
-          <Sparkles className="w-10 h-10 text-primary" />
+        <div className="mb-6 mx-auto flex items-center justify-center">
+          <img
+            src="/ala-logo.jpg"
+            alt="ALA — Freedom of Choice"
+            style={{ width: 160, height: 'auto', borderRadius: 20, display: 'block', objectFit: 'contain' }}
+          />
         </div>
-        <h1 className="text-2xl lg:text-3xl font-semibold text-primary mb-3">
-          Welcome to ALA
-        </h1>
         <p className="text-muted-foreground max-w-md mx-auto">
           Ask anything. Get direct, opinionated answers.
         </p>

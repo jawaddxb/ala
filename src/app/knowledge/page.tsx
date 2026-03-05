@@ -140,12 +140,13 @@ export default function KnowledgePage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <Link 
-                href="/" 
-                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
-              >
+              <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
                 <ArrowLeft className="w-4 h-4" />
-                <span className="hidden sm:inline">Back to ALA</span>
+                <img
+                  src="/ala-logo.jpg"
+                  alt="ALA"
+                  style={{ width: 72, height: 'auto', borderRadius: 8, display: 'block', objectFit: 'contain' }}
+                />
               </Link>
               <div className="h-6 w-px bg-border" />
               <div className="flex items-center gap-2">

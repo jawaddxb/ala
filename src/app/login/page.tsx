@@ -53,11 +53,11 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex flex-col items-center gap-3">
-            <Image src="/ala-logo.jpg" alt="ALA" width={56} height={56} className="rounded-2xl shadow-sm" />
-            <div>
-              <h1 className="text-2xl font-semibold text-foreground">ALA</h1>
-              <p className="text-sm text-muted-foreground mt-0.5">Ask. Learn. Act.</p>
-            </div>
+            <img
+              src="/ala-logo.jpg"
+              alt="ALA — Freedom of Choice"
+              style={{ width: 140, height: 'auto', borderRadius: 16, display: 'block', objectFit: 'contain' }}
+            />
           </Link>
         </div>
 
