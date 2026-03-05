@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { signOut } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
@@ -61,9 +62,7 @@ export function AdminHeader({ user }: AdminHeaderProps) {
             <SheetContent side="left" className="w-72 bg-card border-border p-0">
               <SheetHeader className="p-4 border-b border-border">
                 <SheetTitle className="flex items-center gap-3 text-foreground">
-                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                    <BookOpen className="w-4 h-4 text-primary-foreground" />
-                  </div>
+                  <Image src="/ala-logo.jpg" alt="ALA" width={32} height={32} className="rounded-lg" />
                   ALA Admin
                 </SheetTitle>
               </SheetHeader>
@@ -92,9 +91,13 @@ export function AdminHeader({ user }: AdminHeaderProps) {
 
           {/* Logo */}
           <Link href="/admin" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/10 group-hover:shadow-primary/20 transition-shadow">
-              <BookOpen className="w-5 h-5 text-primary-foreground" />
-            </div>
+            <Image
+              src="/ala-logo.jpg"
+              alt="ALA"
+              width={36}
+              height={36}
+              className="rounded-xl shadow-lg"
+            />
             <div className="hidden sm:block">
               <span className="text-lg font-semibold text-foreground">ALA</span>
               <span className="text-lg font-normal text-muted-foreground ml-1.5">Admin</span>

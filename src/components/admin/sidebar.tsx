@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { cn } from "@/lib/utils";
@@ -151,9 +152,7 @@ export function AdminSidebar() {
       {/* Footer */}
       <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border/50 bg-card/80">
         <div className="flex items-center gap-3 px-3 py-2">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-sm font-bold text-primary-foreground">{userInitial}</span>
-          </div>
+          <Image src="/ala-logo.jpg" alt="ALA" width={32} height={32} className="rounded-lg shrink-0" />
           <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-foreground">{userName}</p>
             <p className="text-xs text-muted-foreground truncate">v1.0.0</p>

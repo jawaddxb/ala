@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChatInterface } from '@/components/chat-interface';
 import { HistorySheet } from '@/components/history-sheet';
 import { Menu, Moon, Sun, Sparkles, RotateCcw, Library } from 'lucide-react';
@@ -29,7 +30,7 @@ export default function Home() {
         </button>
 
         <div className="flex items-center gap-2">
-          <Sparkles className="w-5 h-5 text-primary" />
+          <Image src="/ala-logo.jpg" alt="ALA" width={32} height={32} className="rounded-lg" />
           <span className="font-semibold text-lg tracking-tight">ALA</span>
         </div>
 
@@ -53,9 +54,7 @@ export default function Home() {
           <div className="p-5 border-b border-border">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-primary-foreground" />
-                </div>
+                <Image src="/ala-logo.jpg" alt="ALA" width={40} height={40} className="rounded-xl shadow-sm" />
                 <div>
                   <h1 className="font-semibold text-lg tracking-tight">ALA</h1>
                   <p className="text-xs text-muted-foreground">Ask. Learn. Act.</p>
