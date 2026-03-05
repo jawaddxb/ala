@@ -256,8 +256,8 @@ export default function UsersPage() {
         <Card className="bg-card/50 border-border">
           <CardContent className="pt-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-blue-500/20 rounded-lg">
-                <User className="w-6 h-6 text-blue-400" />
+              <div className="p-3 bg-primary/10 rounded-lg">
+                <User className="w-6 h-6 text-primary" />
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{userCount}</p>

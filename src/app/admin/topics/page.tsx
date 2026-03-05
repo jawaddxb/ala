@@ -69,15 +69,15 @@ interface Suggestion {
 }
 
 const statusStyles: Record<string, string> = {
-  active: "bg-primary/20 text-primary",
-  draft: "bg-yellow-500/20 text-yellow-400",
-  disabled: "bg-red-500/20 text-red-400",
+  active: "bg-primary/10 text-primary",
+  draft: "bg-muted text-muted-foreground",
+  disabled: "bg-muted text-muted-foreground",
 };
 
 const statusDotColors: Record<string, string> = {
   active: "bg-primary",
-  draft: "bg-yellow-400",
-  disabled: "bg-red-400",
+  draft: "bg-muted-foreground",
+  disabled: "bg-muted-foreground",
 };
 
 export default function TopicsPage() {

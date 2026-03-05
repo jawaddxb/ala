@@ -52,9 +52,9 @@ interface ThesisEntry {
 }
 
 const confidenceColors: Record<string, string> = {
-  working_theory: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
-  leaning: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  firm: "bg-green-500/20 text-green-400 border-green-500/30",
+  working_theory: "bg-muted text-muted-foreground border-border",
+  leaning: "bg-muted text-muted-foreground border-border",
+  firm: "bg-primary/10 text-primary border-primary/20",
   absolute: "bg-primary/20 text-primary border-primary/30",
 };
 

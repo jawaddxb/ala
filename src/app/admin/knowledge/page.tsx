@@ -59,11 +59,11 @@ interface KnowledgeDoc {
 }
 
 const docTypeStyles: Record<string, string> = {
-  article: "bg-blue-500/20 text-blue-400",
-  transcript: "bg-purple-500/20 text-purple-400",
-  essay: "bg-amber-500/20 text-amber-400",
-  notes: "bg-muted/50 text-muted-foreground",
-  pdf_extract: "bg-rose-500/20 text-rose-400",
+  article: "bg-primary/10 text-primary",
+  transcript: "bg-primary/10 text-primary",
+  essay: "bg-primary/10 text-primary",
+  notes: "bg-muted text-muted-foreground",
+  pdf_extract: "bg-primary/10 text-primary",
 };
 
 export default function KnowledgePage() {

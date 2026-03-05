@@ -4,11 +4,12 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, AlertCircle, Sparkles, BookOpen, Lock, Mail } from "lucide-react";
+import { Loader2, AlertCircle, Lock, Mail } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -23,7 +24,6 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // NextAuth v5 beta requires explicit CSRF token
       const csrfRes = await fetch("/api/auth/csrf");
       const { csrfToken } = await csrfRes.json();
 
@@ -48,48 +48,41 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-teal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-slate-800/50 to-transparent" />
-      </div>
-
-      <div className="w-full max-w-md relative">
-        {/* Logo and brand */}
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="w-full max-w-sm">
+        {/* Logo */}
         <div className="text-center mb-8">
-          <Link href="/" className="inline-flex flex-col items-center group">
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
-              <BookOpen className="w-8 h-8 text-white" />
+          <Link href="/" className="inline-flex flex-col items-center gap-3">
+            <Image src="/ala-logo.jpg" alt="ALA" width={56} height={56} className="rounded-2xl shadow-sm" />
+            <div>
+              <h1 className="text-2xl font-semibold text-foreground">ALA</h1>
+              <p className="text-sm text-muted-foreground mt-0.5">Ask. Learn. Act.</p>
             </div>
-            <h1 className="text-3xl font-bold text-white">ALA</h1>
-            <p className="text-slate-400 mt-1">Ask. Learn. Act.</p>
           </Link>
         </div>
 
-        <Card className="bg-slate-800/80 backdrop-blur-sm border-slate-700 shadow-xl">
-          <CardHeader className="text-center pb-4">
-            <CardTitle className="text-2xl text-white">Welcome back</CardTitle>
-            <CardDescription className="text-slate-400">
+        <Card className="border-border shadow-sm">
+          <CardHeader className="text-center pb-4 pt-6">
+            <CardTitle className="text-xl text-foreground">Welcome back</CardTitle>
+            <CardDescription className="text-muted-foreground">
               Sign in to access the admin dashboard
             </CardDescription>
           </CardHeader>
           <form onSubmit={handleSubmit}>
-            <CardContent className="space-y-5">
+            <CardContent className="space-y-4 px-6">
               {error && (
-                <div className="flex items-center gap-3 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                <div className="flex items-center gap-2.5 p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{error}</span>
                 </div>
               )}
-              
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-200 text-sm">
-                  Email Address
+
+              <div className="space-y-1.5">
+                <Label htmlFor="email" className="text-sm font-medium text-foreground">
+                  Email
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     id="email"
                     type="email"
@@ -97,17 +90,17 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="pl-10 h-12 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
+                    className="pl-9 h-10 bg-background border-input text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="password" className="text-slate-200 text-sm">
+
+              <div className="space-y-1.5">
+                <Label htmlFor="password" className="text-sm font-medium text-foreground">
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
                     id="password"
                     type="password"
@@ -115,46 +108,31 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="pl-10 h-12 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 focus:border-emerald-500 focus:ring-emerald-500/20"
+                    className="pl-9 h-10 bg-background border-input text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
               </div>
             </CardContent>
-            
-            <CardFooter className="flex flex-col gap-4 pt-2">
+
+            <CardFooter className="flex flex-col gap-3 px-6 pb-6 pt-2">
               <Button
                 type="submit"
-                className="w-full h-12 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-medium text-base shadow-lg shadow-emerald-500/20"
+                className="w-full h-10 bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
                 disabled={loading}
               >
                 {loading ? (
                   <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     Signing in...
                   </>
                 ) : (
-                  <>
-                    <Sparkles className="w-5 h-5 mr-2" />
-                    Sign in
-                  </>
+                  "Sign in"
                 )}
               </Button>
-              
-              <div className="relative w-full">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-slate-700" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-slate-800 px-2 text-slate-500">or</span>
-                </div>
-              </div>
-              
-              <p className="text-sm text-slate-400 text-center">
+
+              <p className="text-sm text-muted-foreground text-center">
                 Don&apos;t have an account?{" "}
-                <Link 
-                  href="/register" 
-                  className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors"
-                >
+                <Link href="/register" className="text-primary hover:text-primary/80 font-medium transition-colors">
                   Create one
                 </Link>
               </p>
@@ -162,8 +140,7 @@ export default function LoginPage() {
           </form>
         </Card>
 
-        {/* Footer */}
-        <p className="text-center text-sm text-slate-500 mt-8">
+        <p className="text-center text-xs text-muted-foreground mt-6">
           Direct answers. No hedging. No filter.
         </p>
       </div>

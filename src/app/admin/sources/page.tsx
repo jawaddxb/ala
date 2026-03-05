@@ -63,11 +63,12 @@ const sourceTypes = [
 ];
 
 const sourceStyles: Record<string, { bg: string; text: string; border: string }> = {
-  quran: { bg: "bg-primary/20", text: "text-primary", border: "border-primary/30" },
-  bible: { bg: "bg-blue-500/20", text: "text-blue-400", border: "border-blue-500/30" },
-  hadith_bukhari: { bg: "bg-amber-500/20", text: "text-amber-400", border: "border-amber-500/30" },
-  hadith_muslim: { bg: "bg-orange-500/20", text: "text-orange-400", border: "border-orange-500/30" },
-  secular: { bg: "bg-purple-500/20", text: "text-purple-400", border: "border-purple-500/30" },
+  quran: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  bible: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  torah: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  hadith_bukhari: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  hadith_muslim: { bg: "bg-primary/10", text: "text-primary", border: "border-primary/20" },
+  secular: { bg: "bg-muted", text: "text-muted-foreground", border: "border-border" },
 };
 
 export default function SourcesPage() {
