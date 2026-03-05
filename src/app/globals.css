@@ -78,33 +78,35 @@
 }
 
 .dark {
-  --background: oklch(0.13 0.015 260);
-  --foreground: oklch(0.95 0.01 260);
-  --surface: oklch(0.16 0.01 260);
+  /* ALA brand dark — deep teal ecosystem */
+  --background: #0d1f1e;
+  --foreground: #f0fafa;
+  --surface: #112827;
   
-  --card: oklch(0.17 0.015 260);
-  --card-foreground: oklch(0.95 0.01 260);
-  --popover: oklch(0.17 0.015 260);
-  --popover-foreground: oklch(0.95 0.01 260);
+  --card: #1a3836;
+  --card-foreground: #f0fafa;
+  --popover: #1a3836;
+  --popover-foreground: #f0fafa;
   
-  --primary: oklch(0.58 0.12 200);
-  --primary-foreground: oklch(0.12 0.02 260);
+  /* Primary — ALA teal #4db8b0 */
+  --primary: #4db8b0;
+  --primary-foreground: #0d1f1e;
   
-  --secondary: oklch(0.22 0.015 260);
-  --secondary-foreground: oklch(0.95 0.01 260);
+  --secondary: #1e3a38;
+  --secondary-foreground: #a8e6e2;
   
-  --muted: oklch(0.22 0.01 260);
-  --muted-foreground: oklch(0.65 0.02 260);
+  --muted: #1e3a38;
+  --muted-foreground: rgba(168, 230, 226, 0.55);
   
-  --accent: oklch(0.25 0.04 60);
-  --accent-foreground: oklch(0.90 0.06 70);
+  --accent: #1e3a38;
+  --accent-foreground: #a8e6e2;
   
-  --reflection: oklch(0.20 0.01 260);
-  --reflection-foreground: oklch(0.88 0.02 260);
+  --reflection: #1a3836;
+  --reflection-foreground: #a8e6e2;
   
-  --border: oklch(0.26 0.01 260);
-  --input: oklch(0.26 0.01 260);
-  --ring: oklch(0.65 0.15 200);
+  --border: rgba(77, 184, 176, 0.15);
+  --input: #1e3a38;
+  --ring: #4db8b0;
 }
 
 @layer base {
@@ -337,3 +339,96 @@ input[type="range"]::-moz-range-thumb {
 .animate-slide-in-left {
   animation: slideInLeft 0.25s ease-out;
 }
+
+/* ─── ALA Premium UI ─────────────────────────────────────────── */
+
+/* Citation badge — inline reference highlight */
+.citation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(77, 184, 176, 0.12);
+  border: 1px solid rgba(77, 184, 176, 0.3);
+  color: #4db8b0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.72em;
+  font-weight: 600;
+  padding: 1px 7px;
+  border-radius: 5px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+  margin: 0 1px;
+  cursor: default;
+  transition: background 0.15s, border-color 0.15s;
+}
+.citation-badge:hover {
+  background: rgba(77, 184, 176, 0.2);
+  border-color: rgba(77, 184, 176, 0.5);
+}
+
+/* AI message markdown */
+.ai-message h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #a8e6e2;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+}
+.ai-message strong {
+  color: #a8e6e2;
+  font-weight: 600;
+}
+.ai-message ol {
+  list-style: decimal;
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+.ai-message ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.4rem 0;
+}
+.ai-message ul li::before {
+  content: '—';
+  color: #4db8b0;
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+.ai-message li {
+  margin-bottom: 0.3rem;
+  line-height: 1.65;
+}
+.ai-message p + p {
+  margin-top: 0.6rem;
+}
+
+/* Smooth sidebar */
+.sidebar-glow {
+  background: linear-gradient(180deg, #0d1f1e 0%, #0a1918 100%);
+  border-right: 1px solid rgba(77, 184, 176, 0.12);
+}
+
+/* User bubble — ALA teal */
+.user-bubble {
+  background: linear-gradient(135deg, #4db8b0, #3da8a0);
+  color: #0d1f1e;
+  border-radius: 20px 20px 6px 20px;
+  padding: 12px 18px;
+  font-weight: 500;
+}
+
+/* Pulse dots for loading */
+@keyframes pulse-dot {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(77,184,176,0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(77,184,176,0.4); }

@@ -1,136 +1,76 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import { ChatInterface } from '@/components/chat-interface';
+import { DesktopSidebar } from '@/components/desktop-sidebar';
 import { HistorySheet } from '@/components/history-sheet';
-import { Menu, Moon, Sun, Sparkles, RotateCcw, Library } from 'lucide-react';
+import { Menu, RotateCcw } from 'lucide-react';
 import { useAlaStore } from '@/lib/store';
 
 export default function Home() {
   const [showHistory, setShowHistory] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const { messages, clearMessages } = useAlaStore();
 
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
-
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div
+      className="min-h-screen flex flex-col"
+      style={{ background: '#0d1f1e' }}
+    >
       {/* Mobile Header */}
-      <header className="header-height flex items-center justify-between px-4 border-b border-border bg-background sticky top-0 z-40 lg:hidden">
+      <header
+        className="flex items-center justify-between px-4 h-14 sticky top-0 z-40 lg:hidden"
+        style={{
+          background: 'rgba(13,31,30,0.95)',
+          borderBottom: '1px solid rgba(77,184,176,0.1)',
+          backdropFilter: 'blur(10px)',
+        }}
+      >
         <button
           onClick={() => setShowHistory(true)}
-          className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-muted transition-colors"
+          className="w-9 h-9 flex items-center justify-center rounded-xl transition-colors"
+          style={{ color: '#4db8b0' }}
         >
-          <Menu className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+          <Menu className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center">
-          <img
-            src="/ala-logo.jpg"
-            alt="ALA — Freedom of Choice"
-            style={{ width: 80, height: 'auto', borderRadius: 10, display: 'block', objectFit: 'contain' }}
-          />
-        </div>
+        <img
+          src="/ala-logo.jpg"
+          alt="ALA"
+          style={{ width: 36, height: 36, borderRadius: 8, objectFit: 'cover' }}
+        />
 
-        <button
-          onClick={toggleTheme}
-          className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-muted transition-colors"
-        >
-          {isDark ? (
-            <Sun className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-          ) : (
-            <Moon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-          )}
-        </button>
+        {messages.length > 0 ? (
+          <button
+            onClick={clearMessages}
+            className="w-9 h-9 flex items-center justify-center rounded-xl transition-colors"
+            style={{ color: 'rgba(168,230,226,0.5)' }}
+          >
+            <RotateCcw className="w-4 h-4" />
+          </button>
+        ) : (
+          <div className="w-9 h-9" />
+        )}
       </header>
 
       {/* Main Layout */}
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden" style={{ height: 'calc(100vh - 0px)' }}>
         {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex w-80 xl:w-[340px] border-r border-border bg-surface/50 flex-col">
-          {/* Sidebar Header */}
-          <div className="p-5 border-b border-border">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <img
-                  src="/ala-logo.jpg"
-                  alt="ALA — Freedom of Choice"
-                  style={{ width: 120, height: 'auto', borderRadius: 12, display: 'block', objectFit: 'contain' }}
-                />
-              </div>
-              <div className="flex items-center gap-1">
-                {messages.length > 0 && (
-                  <button
-                    onClick={clearMessages}
-                    className="w-9 h-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors"
-                    title="New conversation"
-                  >
-                    <RotateCcw className="w-4 h-4 text-muted-foreground" />
-                  </button>
-                )}
-                <button
-                  onClick={toggleTheme}
-                  className="w-9 h-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors"
-                >
-                  {isDark ? (
-                    <Sun className="w-4 h-4 text-muted-foreground" />
-                  ) : (
-                    <Moon className="w-4 h-4 text-muted-foreground" />
-                  )}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar Content */}
-          <div className="flex-1 overflow-y-auto scrollbar-thin p-5">
-            <div className="space-y-6">
-              <div className="p-4 bg-muted/50 border rounded-xl">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Sparkles className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="text-xs">
-                    <p className="font-medium text-foreground mb-1">Direct. Opinionated. Real.</p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      ALA speaks with conviction — backed by knowledge, not platitudes.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar Footer */}
-          <div className="p-4 border-t border-border space-y-3">
-            {/* Knowledge Library Link */}
-            <Link
-              href="/knowledge"
-              className="flex items-center gap-3 p-3 rounded-xl border border-border hover:border-primary/50 hover:bg-muted/50 transition-colors group"
-            >
-              <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Library className="w-4 h-4 text-primary" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium">Knowledge Library</p>
-                <p className="text-xs text-muted-foreground">Browse source texts</p>
-              </div>
-            </Link>
-          </div>
+        <aside className="hidden lg:flex w-72 xl:w-80 flex-col shrink-0">
+          <DesktopSidebar />
         </aside>
 
-        {/* Chat Area */}
-        <main className="flex-1 flex flex-col min-w-0">
+        {/* Chat */}
+        <main
+          className="flex-1 flex flex-col min-w-0"
+          style={{
+            borderLeft: '1px solid rgba(77,184,176,0.1)',
+          }}
+        >
           <ChatInterface />
         </main>
       </div>
 
-      {/* Mobile Sheet */}
+      {/* Mobile History Sheet */}
       <HistorySheet open={showHistory} onClose={() => setShowHistory(false)} />
     </div>
   );

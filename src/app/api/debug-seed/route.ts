@@ -30,7 +30,7 @@ export async function GET() {
 }
 
 export async function POST() {
-  const docs = [
+  const docs: Array<{ id: string; title: string; content: string; doc_type: 'briefing'; category: string; is_approved: number }> = [
     { id: 'knowledge-iran-war-2026', title: 'The Iran-Israel-US War (March 2026)', content: "On March 1, 2026, the US and Israel began military strikes on Iran. Iran controls the Strait of Hormuz — 20% of global oil supply. Bitcoin jumped above $71,000 as war broke out. Dubai's real estate hit record highs as capital fled to stable jurisdictions.", doc_type: 'briefing', category: 'geopolitics', is_approved: 1 },
     { id: 'knowledge-btc-war-hedge', title: 'Bitcoin in Wartime: The Ultimate Hedge', content: 'Bitcoin climbed above $71,000 on March 4, 2026, surging 6%+ in 24 hours as the Iran-Israel-US war erupted. The 21 million cap is a promise that no government can break, regardless of what war they start.', doc_type: 'briefing', category: 'crypto', is_approved: 1 },
     { id: 'knowledge-oil-hormuz-2026', title: 'Strait of Hormuz Crisis 2026', content: "The 2026 Strait of Hormuz crisis is a direct consequence of the US-Israel strikes on Iran. Oil prices surged. Goldman Sachs revised its inflation forecast upward. The Fed's rate cut plans are now in jeopardy.", doc_type: 'briefing', category: 'finance', is_approved: 1 },

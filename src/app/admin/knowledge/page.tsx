@@ -451,6 +451,7 @@ export default function KnowledgePage() {
                     <SelectItem value="essay" className="text-foreground focus:bg-secondary focus:text-foreground">Essay</SelectItem>
                     <SelectItem value="notes" className="text-foreground focus:bg-secondary focus:text-foreground">Notes</SelectItem>
                     <SelectItem value="pdf_extract" className="text-foreground focus:bg-secondary focus:text-foreground">PDF Extract</SelectItem>
+                    <SelectItem value="briefing" className="text-foreground focus:bg-secondary focus:text-foreground">Briefing</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

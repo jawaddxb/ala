@@ -105,7 +105,7 @@ db.exec(`
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
-    doc_type TEXT DEFAULT 'article' CHECK(doc_type IN ('article', 'transcript', 'essay', 'notes', 'pdf_extract')),
+    doc_type TEXT DEFAULT 'article' CHECK(doc_type IN ('article', 'transcript', 'essay', 'notes', 'pdf_extract', 'briefing')),
     category TEXT REFERENCES categories(id),
     is_approved INTEGER DEFAULT 1,
     uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -453,7 +453,7 @@ export interface KnowledgeDoc {
   id: string;
   title: string;
   content: string;
-  doc_type: 'article' | 'transcript' | 'essay' | 'notes' | 'pdf_extract';
+  doc_type: 'article' | 'transcript' | 'essay' | 'notes' | 'pdf_extract' | 'briefing';
   category: string | null;
   is_approved: number;
   uploaded_at: string;
