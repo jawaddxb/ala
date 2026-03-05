@@ -20,7 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Force dark mode — must run before paint to avoid flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('dark');`,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
