@@ -211,16 +211,16 @@ export function ChatInterface() {
 // ─── Empty state ──────────────────────────────────────────────────────────────
 const SUGGESTIONS = [
   {
-    title: 'Riba & Halal Finance',
-    prompt: 'What does Islam say about riba and halal investing? Give me the exact hadith citations.',
-  },
-  {
     title: 'Bitcoin & Sound Money',
-    prompt: 'What do the religious texts say about sound money and currency debasement?',
+    prompt: 'Why is Bitcoin the only real money? What does history say about hard money vs fiat currency debasement?',
   },
   {
-    title: 'War & Sovereignty',
-    prompt: 'What does scripture say about resisting oppression and defending one\'s land?',
+    title: 'Central Banks & The Cantillon Effect',
+    prompt: 'What is the Cantillon Effect and why are central banks the root cause of modern inequality?',
+  },
+  {
+    title: 'Individual Sovereignty',
+    prompt: 'What does it actually mean to be sovereign as an individual — financially, philosophically, and practically?',
   },
 ];
 
