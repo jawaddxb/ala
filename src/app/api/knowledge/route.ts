@@ -53,8 +53,11 @@ export async function GET(request: NextRequest) {
     }
 
     if (search) {
-      whereClause += ' AND (text LIKE ? OR reference LIKE ?)';
-      params.push(`%${search}%`, `%${search}%`);
+      const terms = search.trim().split(/\s+/).filter(Boolean);
+      for (const term of terms) {
+        whereClause += ' AND (text LIKE ? OR reference LIKE ?)';
+        params.push(`%${term}%`, `%${term}%`);
+      }
     }
 
     // Get total count
