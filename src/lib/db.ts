@@ -757,8 +757,51 @@ export function seedKiyanIfEmpty() {
   }
 }
 
+// ── SCRIPTURE CORPUS SEED ─────────────────────────────────────────────────
+function seedScriptureIfEmpty() {
+  try {
+    const count = (db.prepare('SELECT COUNT(*) as c FROM sources').get() as { c: number }).c;
+    if (count > 0) return; // already seeded
+
+    console.log('[ALA] Seeding scripture corpus...');
+
+    const sources = ['quran', 'torah', 'bible', 'secular'];
+    const insertSource = db.prepare(`
+      INSERT OR REPLACE INTO sources (id, reference, text, source, book, chapter, verse, number, category)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    let total = 0;
+    for (const src of sources) {
+      const seedFile = path.join(process.cwd(), 'data', `seed-${src}.json`);
+      if (!fs.existsSync(seedFile)) {
+        console.log(`[ALA] Seed file missing: seed-${src}.json — skipping`);
+        continue;
+      }
+      const rows = JSON.parse(fs.readFileSync(seedFile, 'utf-8')) as Array<{
+        id: string; reference: string; text: string; source: string;
+        book: string | null; chapter: number | null; verse: number | null;
+        number: number | null; category: string;
+      }>;
+      const insertMany = db.transaction((items: typeof rows) => {
+        for (const r of items) {
+          insertSource.run(r.id, r.reference, r.text, r.source, r.book, r.chapter, r.verse, r.number, r.category);
+        }
+      });
+      insertMany(rows);
+      total += rows.length;
+      console.log(`[ALA]   ✓ ${src}: ${rows.length} entries`);
+    }
+
+    console.log(`[ALA] Scripture seed complete: ${total} total entries`);
+  } catch (e) {
+    console.error('[ALA] Scripture seed error:', e);
+  }
+}
+
 // Call on module load
 initializeDefaultAdmin();
 seedKiyanIfEmpty();
+seedScriptureIfEmpty();
 
 export default db;
