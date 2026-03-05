@@ -63,10 +63,9 @@ export async function POST(req: Request) {
     try { createTopicSuggestion(userMessage); } catch { /* ignore */ }
   }
 
-  // Search corpus for relevant wisdom texts
-  // Use a broader search since we're no longer filtering by perspective
+  // Search corpus for relevant wisdom texts — retrieve top 12 across all 6 collections
   const searchQuery = `${userMessage}`;
-  const sources = searchCorpus(searchQuery, 'mixed' as any, 5);
+  const sources = searchCorpus(searchQuery, 'mixed' as any, 12);
   const wisdomText = formatSourcesForPrompt(sources);
   
   // Inject knowledge + wisdom into context

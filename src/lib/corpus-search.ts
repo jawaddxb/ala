@@ -94,7 +94,7 @@ export function getSourcesForPerspective(perspective: string): SourceType[] {
     case 'secular':
       return ['secular'];
     case 'mixed':
-      return ['quran', 'bible', 'torah', 'secular'];
+      return ['quran', 'hadith_bukhari', 'hadith_muslim', 'bible', 'torah', 'secular'];
     default:
       return [];
   }
@@ -142,11 +142,14 @@ export function searchCorpus(
   return allResults.slice(0, maxResults);
 }
 
-// Format sources for prompt
+// Format sources for prompt — with source type clearly labeled for grounded citation
 export function formatSourcesForPrompt(results: SearchResult[]): string {
   if (results.length === 0) return '';
   
   return results
-    .map((r, i) => `${i + 1}. ${r.reference}:\n   "${r.text}"`)
+    .map((r, i) => {
+      const sourceLabel = r.source.replace(/_/g, ' ').replace('hadith ', 'Hadith ');
+      return `[${i + 1}] [${sourceLabel.toUpperCase()}] ${r.reference}\n"${r.text}"`;
+    })
     .join('\n\n');
 }

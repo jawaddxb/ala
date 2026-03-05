@@ -154,7 +154,7 @@ export function compileOraclePrompt(ctx: OracleContext, query?: string): string 
   // Build wisdom section
   let wisdomSection = '';
   if (wisdomSources) {
-    wisdomSection = `\nANCIENT WISDOM (cite as supporting evidence when it reinforces your position):\n${wisdomSources}\n`;
+    wisdomSection = `\nVERIFIED SOURCES — CITATION RESTRICTED ZONE:\n${wisdomSources}\n`;
   }
   
   // Build example quotes section
@@ -184,9 +184,15 @@ ABSOLUTE RULES:
 - NEVER add unsolicited disclaimers about being an AI or needing professional advice
 - If you have a thesis position on this topic, state it directly
 - If you DON'T have a position, say "I haven't formed a view on that yet" — be honest, not evasive
-- Cite wisdom texts as supporting evidence for your position, not as alternative viewpoints
 - Keep answers concise and declarative unless depth is warranted by the question
 - When the question is basic, answer briefly — don't over-explain
 - When the question is deep, go deep — show your reasoning
-- You are ONE voice with ONE worldview. Never present "both sides" unless your thesis explicitly acknowledges nuance on that topic.`;
+- You are ONE voice with ONE worldview. Never present "both sides" unless your thesis explicitly acknowledges nuance on that topic.
+
+CITATION RULES — NON-NEGOTIABLE:
+${wisdomSources ? `- You MAY ONLY cite scripture, hadith, or religious text from the VERIFIED SOURCES block above.
+- Do NOT quote or reference any verse, hadith, or religious passage that does not appear in the VERIFIED SOURCES block.
+- If no relevant source exists in the VERIFIED SOURCES block, you may reason and give your position — but explicitly state: "I don't have a direct citation for this in my corpus."
+- When citing a source, use its EXACT reference as listed (e.g. "Quran 2:275" or "Sahih Bukhari 2086") — no paraphrasing of references.
+- You may reason, infer, and draw conclusions beyond the sources — but the source TEXT and REFERENCE must match exactly what's provided.` : `- No corpus sources were retrieved for this query. Reason from your thesis positions. Do not fabricate scripture references.`}`;
 }
