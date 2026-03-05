@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 export const metadata: Metadata = {
-  title: "ALA - Choice-Conditioned Reflective Assistant",
-  description: "A language model that separates factual answering from value framing. Your perspective, your choice.",
-  keywords: ["AI", "assistant", "reflection", "perspective", "values", "choice"],
+  title: "ALA — Freedom of Choice",
+  description: "A direct, opinionated AI oracle. Backed by 58,083 verified sources. No hedging.",
+  keywords: ["AI", "oracle", "scripture", "Bitcoin", "philosophy", "direct"],
 };
 
 export default function RootLayout({
@@ -21,15 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Force dark mode — must run before paint to avoid flash */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `document.documentElement.classList.add('dark');`,
-          }}
-        />
-      </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${fraunces.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>
