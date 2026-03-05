@@ -2,7 +2,7 @@ import { createOpenAI } from '@ai-sdk/openai';
 import { streamText } from 'ai';
 import { loadOracleContext, compileOraclePrompt, checkTopicStatus, findRelevantThesis } from '@/lib/oracle-prompt';
 import { searchCorpus, formatSourcesForPrompt } from '@/lib/corpus-search';
-import { createTopicSuggestion } from '@/lib/db';
+import { createTopicSuggestion, getKnowledgeDocs } from '@/lib/db';
 
 export const maxDuration = 60;
 
@@ -68,8 +68,19 @@ export async function POST(req: Request) {
   const sources = searchCorpus(searchQuery, 'mixed' as any, 12);
   const wisdomText = formatSourcesForPrompt(sources);
   
+  // Search approved knowledge docs for relevant context
+  const allDocs = getKnowledgeDocs({ approved_only: true });
+  const queryWords = userMessage.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  const relevantDocs = allDocs.filter(doc => {
+    const haystack = `${doc.title} ${doc.content}`.toLowerCase();
+    return queryWords.some(w => haystack.includes(w));
+  }).slice(0, 3);
+  const knowledgeContext = relevantDocs.length > 0
+    ? relevantDocs.map(d => `[${d.title}]\n${d.content}`).join('\n\n---\n\n')
+    : undefined;
+
   // Inject knowledge + wisdom into context
-  oracleCtx.knowledgeContext = undefined; // TODO: BM25 search knowledge_docs when Feature 5 is built
+  oracleCtx.knowledgeContext = knowledgeContext;
   oracleCtx.wisdomSources = wisdomText || undefined;
 
   // Compile the full oracle system prompt

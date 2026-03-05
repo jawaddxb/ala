@@ -14,8 +14,8 @@ export default function AdminDashboard() {
     { name: "Quran", key: "quran" },
     { name: "Bible", key: "bible" },
     { name: "Torah", key: "torah" },
-    { name: "Hadith Bukhari", key: "hadith_bukhari" },
-    { name: "Hadith Muslim", key: "hadith_muslim" },
+    { name: "Hadith Bukhari", key: "hadith-bukhari" },
+    { name: "Hadith Muslim", key: "hadith-muslim" },
     { name: "Secular Wisdom", key: "secular" },
   ];
 
