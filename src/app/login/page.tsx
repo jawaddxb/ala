@@ -48,7 +48,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-8">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -56,7 +56,7 @@ export default function LoginPage() {
             <img
               src="/ala-logo.jpg"
               alt="ALA — Freedom of Choice"
-              style={{ width: 140, height: 'auto', borderRadius: 16, display: 'block', objectFit: 'contain' }}
+              className="w-24 sm:w-[140px] h-auto rounded-2xl block object-contain"
             />
           </Link>
         </div>
@@ -117,7 +117,7 @@ export default function LoginPage() {
             <CardFooter className="flex flex-col gap-3 px-6 pb-6 pt-2">
               <Button
                 type="submit"
-                className="w-full h-10 bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
+                className="w-full h-11 bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
                 disabled={loading}
               >
                 {loading ? (

@@ -257,7 +257,7 @@ export default function TopicsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground tracking-tight">Topics</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Topics</h1>
           <p className="text-muted-foreground mt-1">Manage what the AI can discuss</p>
         </div>
         <Button
@@ -270,7 +270,7 @@ export default function TopicsPage() {
       </div>
 
       <Tabs defaultValue="topics">
-        <TabsList className="bg-card/50 border border-border">
+        <TabsList className="bg-card/50 border border-border flex-wrap h-auto">
           <TabsTrigger
             value="topics"
             className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
@@ -309,7 +309,8 @@ export default function TopicsPage() {
               </CardContent>
             </Card>
           ) : (
-            <Card className="bg-card/50 border-border">
+            <Card className="bg-card/50 border-border overflow-hidden">
+              <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
                   <TableRow className="border-border hover:bg-transparent">
@@ -449,6 +450,7 @@ export default function TopicsPage() {
                   })}
                 </TableBody>
               </Table>
+              </div>
             </Card>
           )}
         </TabsContent>
@@ -486,7 +488,7 @@ export default function TopicsPage() {
                           </span>
                         </div>
                       </div>
-                      <div className="flex gap-2 shrink-0">
+                      <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-2 shrink-0">
                         <Button
                           size="sm"
                           className="bg-primary/20 text-primary hover:bg-primary/30 h-8"
@@ -533,7 +535,7 @@ export default function TopicsPage() {
                 className="bg-secondary/50 border-input text-foreground focus:border-ring"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-foreground">Category *</Label>
                 <Select value={addForm.category} onValueChange={(v) => setAddForm({ ...addForm, category: v })}>

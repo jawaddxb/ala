@@ -240,7 +240,7 @@ export default function SourcesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground tracking-tight">Sources</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Sources</h1>
           <p className="text-muted-foreground mt-1">
             Browse and manage your corpus data
           </p>
@@ -301,9 +301,9 @@ export default function SourcesPage() {
             </div>
 
             {/* Source Type Filter */}
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <Select value={sourceType} onValueChange={handleSourceTypeChange}>
-                <SelectTrigger className="w-[200px] h-11 bg-secondary/50 border-input text-foreground">
+                <SelectTrigger className="w-full sm:w-[200px] h-11 bg-secondary/50 border-input text-foreground">
                   <Filter className="w-4 h-4 mr-2 text-muted-foreground" />
                   <SelectValue placeholder="Filter by source" />
                 </SelectTrigger>
@@ -449,7 +449,7 @@ export default function SourcesPage() {
                         </Badge>
                       </td>
                       <td className="px-4 py-2.5 align-top text-right">
-                        <div className="flex gap-1 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex gap-1 justify-end sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                           <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-secondary" onClick={() => copyToClipboard(source.text, source.id)}>
                             {copiedId === source.id ? <CheckCircle className="w-3.5 h-3.5 text-primary" /> : <Copy className="w-3.5 h-3.5" />}
                           </Button>

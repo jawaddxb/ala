@@ -182,7 +182,7 @@ export default function ThesisPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground tracking-tight">Thesis Vault</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Thesis Vault</h1>
           <p className="text-muted-foreground mt-1">Define worldview positions by category</p>
         </div>
         <Button
@@ -438,7 +438,7 @@ export default function ThesisPage() {
                 className="bg-secondary/50 border-input text-foreground resize-none focus:border-ring"
               />
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-foreground">Confidence</Label>
                 <Select

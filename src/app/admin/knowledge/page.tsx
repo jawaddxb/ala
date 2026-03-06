@@ -170,7 +170,7 @@ export default function KnowledgePage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground tracking-tight">Knowledge Library</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Knowledge Library</h1>
           <p className="text-muted-foreground mt-1">Documents that inform AI responses</p>
         </div>
         <Button
@@ -204,7 +204,7 @@ export default function KnowledgePage() {
               )}
             </div>
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-              <SelectTrigger className="w-[200px] h-11 bg-secondary/50 border-input text-foreground">
+              <SelectTrigger className="w-full sm:w-[200px] h-11 bg-secondary/50 border-input text-foreground">
                 <SelectValue placeholder="Filter by category" />
               </SelectTrigger>
               <SelectContent className="bg-card border-border">
@@ -241,7 +241,8 @@ export default function KnowledgePage() {
           </CardContent>
         </Card>
       ) : (
-        <Card className="bg-card/50 border-border">
+        <Card className="bg-card/50 border-border overflow-hidden">
+          <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow className="border-border hover:bg-transparent">
@@ -403,6 +404,7 @@ export default function KnowledgePage() {
               })}
             </TableBody>
           </Table>
+          </div>
         </Card>
       )}
 
@@ -438,7 +440,7 @@ export default function KnowledgePage() {
                 <p className="text-xs text-muted-foreground">{wordCount(addForm.content).toLocaleString()} words</p>
               )}
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-foreground">Type</Label>
                 <Select value={addForm.doc_type} onValueChange={(v) => setAddForm({ ...addForm, doc_type: v })}>

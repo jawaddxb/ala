@@ -145,25 +145,26 @@ export default function KnowledgePage() {
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+              <Link href="/" className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors shrink-0 min-w-[44px] min-h-[44px]">
                 <ArrowLeft className="w-4 h-4" />
                 <img
                   src="/ala-logo.jpg"
                   alt="ALA"
+                  className="hidden sm:block"
                   style={{ width: 72, height: 'auto', borderRadius: 8, display: 'block', objectFit: 'contain' }}
                 />
               </Link>
-              <div className="h-6 w-px bg-border" />
-              <div className="flex items-center gap-2">
-                <Library className="w-6 h-6 text-primary" />
-                <h1 className="text-xl font-semibold">Knowledge Library</h1>
+              <div className="h-6 w-px bg-border hidden sm:block" />
+              <div className="flex items-center gap-2 min-w-0">
+                <Library className="w-5 h-5 sm:w-6 sm:h-6 text-primary shrink-0" />
+                <h1 className="text-base sm:text-xl font-semibold truncate">Knowledge Library</h1>
               </div>
             </div>
             <button
               onClick={() => setShowInfo(!showInfo)}
-              className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+              className="flex items-center gap-2 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors shrink-0 min-h-[44px]"
             >
               <Info className="w-4 h-4" />
               <span className="hidden sm:inline">About Sources</span>
@@ -215,10 +216,10 @@ export default function KnowledgePage() {
       <div className="border-b border-border bg-surface/50">
         <div className="container mx-auto px-4 py-3">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-sm text-muted-foreground mr-2">Browse:</span>
+            <span className="text-sm text-muted-foreground mr-2 hidden sm:inline">Browse:</span>
             <button
               onClick={() => setSelectedSource('all')}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              className={`px-3 py-2 sm:py-1.5 rounded-full text-sm font-medium transition-colors min-h-[44px] sm:min-h-0 ${
                 selectedSource === 'all' 
                   ? 'bg-primary text-primary-foreground' 
                   : 'bg-muted hover:bg-muted/80'
@@ -230,7 +231,7 @@ export default function KnowledgePage() {
               <button
                 key={stat.source}
                 onClick={() => setSelectedSource(stat.source)}
-                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 py-2 sm:py-1.5 rounded-full text-sm font-medium transition-colors min-h-[44px] sm:min-h-0 ${
                   selectedSource === stat.source 
                     ? 'bg-primary text-primary-foreground' 
                     : 'bg-muted hover:bg-muted/80'
@@ -374,14 +375,14 @@ export default function KnowledgePage() {
 
             {/* Pagination */}
             {data && data.totalPages > 1 && (
-              <div className="flex items-center justify-center gap-2 mt-8">
+              <div className="flex items-center justify-center gap-1 sm:gap-2 mt-8 flex-wrap">
                 <button
                   onClick={() => setPage(p => Math.max(1, p - 1))}
                   disabled={page === 1}
-                  className="flex items-center gap-1 px-4 py-2 border rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-1 px-3 sm:px-4 py-2 border rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
                 >
                   <ChevronLeft className="w-4 h-4" />
-                  Previous
+                  <span className="hidden sm:inline">Previous</span>
                 </button>
                 <div className="flex items-center gap-1">
                   {[...Array(Math.min(5, data.totalPages))].map((_, i) => {
@@ -399,7 +400,7 @@ export default function KnowledgePage() {
                       <button
                         key={i}
                         onClick={() => setPage(pageNum)}
-                        className={`w-10 h-10 rounded-lg ${
+                        className={`w-10 h-10 min-w-[44px] min-h-[44px] rounded-lg ${
                           page === pageNum
                             ? 'bg-primary text-primary-foreground'
                             : 'hover:bg-muted'
@@ -413,9 +414,9 @@ export default function KnowledgePage() {
                 <button
                   onClick={() => setPage(p => Math.min(data.totalPages, p + 1))}
                   disabled={page === data.totalPages}
-                  className="flex items-center gap-1 px-4 py-2 border rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-1 px-3 sm:px-4 py-2 border rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
                 >
-                  Next
+                  <span className="hidden sm:inline">Next</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>

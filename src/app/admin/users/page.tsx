@@ -211,7 +211,7 @@ export default function UsersPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground tracking-tight">Users</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">Users</h1>
           <p className="text-muted-foreground mt-1">Manage user accounts and roles</p>
         </div>
         <Button
@@ -386,7 +386,7 @@ export default function UsersPage() {
                         </div>
                       </TableCell>
                       <TableCell className="text-right">
-                        <div className="flex justify-end gap-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                        <div className="flex justify-end gap-1 sm:opacity-50 sm:group-hover:opacity-100 transition-opacity">
                           <Button
                             variant="ghost"
                             size="icon"

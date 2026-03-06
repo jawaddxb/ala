@@ -23,7 +23,7 @@ export default function AdminDashboard() {
     <div className="space-y-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="space-y-1">
-        <h1 className="text-3xl font-semibold text-foreground tracking-tight">Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">Dashboard</h1>
         <p className="text-muted-foreground">Overview of your corpus and system status</p>
       </div>
 

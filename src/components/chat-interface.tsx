@@ -136,7 +136,7 @@ export function ChatInterface() {
     <div className="flex flex-col h-full" style={{ background: '#faf8f4' }}>
       {/* Messages */}
       <div className="flex-1 overflow-y-auto" ref={scrollRef}>
-        <div className="max-w-2xl mx-auto px-5 py-8 lg:py-12">
+        <div className="max-w-2xl mx-auto px-3 sm:px-5 py-6 sm:py-8 lg:py-12">
           {messages.length === 0 ? (
             <EmptyState />
           ) : (
@@ -169,10 +169,10 @@ export function ChatInterface() {
 
       {/* Input */}
       <div style={{ borderTop: '1px solid #e0dbd2', background: '#faf8f4' }}>
-        <div className="max-w-2xl mx-auto px-5 py-4">
+        <div className="max-w-2xl mx-auto px-3 sm:px-5 py-3 sm:py-4">
           <form onSubmit={handleSubmit}>
             <div
-              className="flex items-end gap-3 rounded-xl px-4 py-3"
+              className="flex items-end gap-2 sm:gap-3 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3"
               style={{ background: '#ffffff', border: '1px solid #e0dbd2', boxShadow: '0 1px 3px rgba(0,0,0,0.04)' }}
             >
               <textarea
@@ -182,24 +182,24 @@ export function ChatInterface() {
                 onKeyDown={handleKeyDown}
                 placeholder="Ask anything..."
                 rows={1}
-                className="flex-1 resize-none bg-transparent focus:outline-none text-sm leading-relaxed"
-                style={{ minHeight: '22px', maxHeight: '140px', color: '#1a2e2c', caretColor: '#2a7470' }}
+                className="flex-1 resize-none bg-transparent focus:outline-none text-base sm:text-sm leading-relaxed"
+                style={{ minHeight: '24px', maxHeight: '140px', color: '#1a2e2c', caretColor: '#2a7470' }}
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
-                className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 transition-all"
+                className="min-w-[44px] min-h-[44px] sm:w-8 sm:h-8 sm:min-w-0 sm:min-h-0 rounded-lg flex items-center justify-center shrink-0 transition-all"
                 style={{
                   background: input.trim() && !isLoading ? '#2a7470' : '#ece9e3',
                   color: input.trim() && !isLoading ? '#ffffff' : '#b0a89e',
                 }}
               >
-                <Send className="w-3.5 h-3.5" />
+                <Send className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               </button>
             </div>
           </form>
-          <p className="text-center text-[11px] mt-2" style={{ color: '#c0b8b0' }}>
+          <p className="text-center text-[11px] mt-2 hidden sm:block" style={{ color: '#c0b8b0' }}>
             Enter to send · Shift+Enter for new line
           </p>
         </div>
@@ -248,10 +248,10 @@ function EmptyState() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[62vh] text-center select-none">
+    <div className="flex flex-col items-center justify-center min-h-[55vh] sm:min-h-[62vh] text-center select-none px-1">
       {/* Typographic mark — no logo image, lead with the word */}
-      <div className="mb-7">
-        <div className="mb-4 flex items-center justify-center gap-3">
+      <div className="mb-5 sm:mb-7">
+        <div className="mb-3 sm:mb-4 flex items-center justify-center gap-3">
           <div style={{ width: 30, height: 1, background: '#d0cbc2' }} />
           <span
             style={{
@@ -269,10 +269,9 @@ function EmptyState() {
         </div>
 
         <h1
-          className="mb-2"
+          className="mb-2 text-[1.6rem] sm:text-[2.1rem]"
           style={{
             fontFamily: 'var(--font-fraunces), Georgia, serif',
-            fontSize: '2.1rem',
             fontWeight: 600,
             color: '#1a2e2c',
             letterSpacing: '-0.025em',
@@ -281,18 +280,18 @@ function EmptyState() {
         >
           Ask. Get an answer.
         </h1>
-        <p className="text-sm" style={{ color: '#9a9388', maxWidth: 380, margin: '0 auto', lineHeight: 1.6 }}>
+        <p className="text-xs sm:text-sm" style={{ color: '#9a9388', maxWidth: 380, margin: '0 auto', lineHeight: 1.6 }}>
           Direct answers backed by 58,083 verified sources. No hedging. No hallucination.
         </p>
       </div>
 
       {/* Suggestions — editorial list, no icons */}
-      <div className="w-full max-w-lg space-y-2 mt-7">
+      <div className="w-full max-w-lg space-y-2 mt-5 sm:mt-7">
         {SUGGESTIONS.map((s) => (
           <button
             key={s.title}
             onClick={() => handleSuggestion(s.prompt)}
-            className="w-full text-left px-4 py-3 rounded-xl transition-all group"
+            className="w-full text-left px-3 sm:px-4 py-3 rounded-xl transition-all group min-h-[44px]"
             style={{ background: '#ffffff', border: '1px solid #e0dbd2' }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLButtonElement).style.borderColor = '#b8dbd9';
@@ -310,7 +309,7 @@ function EmptyState() {
               {s.title}
             </p>
             <p
-              className="text-xs leading-relaxed line-clamp-1"
+              className="text-xs leading-relaxed line-clamp-2 sm:line-clamp-1"
               style={{ color: '#9a9388' }}
             >
               {s.prompt}
@@ -331,7 +330,7 @@ function MessageBubble({ message }: { message: Message }) {
     return (
       <div className="flex justify-end">
         <div
-          className="user-bubble max-w-[78%] lg:max-w-[65%]"
+          className="user-bubble max-w-[88%] sm:max-w-[78%] lg:max-w-[65%]"
           style={{ fontSize: '0.9rem' }}
         >
           {message.content}
@@ -353,7 +352,7 @@ function MessageBubble({ message }: { message: Message }) {
       {/* Content */}
       <div className="flex-1 min-w-0">
         <div
-          className="rounded-xl px-5 py-4"
+          className="rounded-xl px-3 sm:px-5 py-3 sm:py-4"
           style={{
             background: '#ffffff',
             border: '1px solid #e8e3d8',

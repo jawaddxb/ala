@@ -12,7 +12,7 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="p-6 max-w-3xl">
+    <div className="max-w-3xl">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-semibold">Settings</h1>
@@ -110,7 +110,7 @@ export default function SettingsPage() {
           <Database className="w-5 h-5 text-primary" />
           <h2 className="font-semibold">System Info</h2>
         </div>
-        <div className="grid grid-cols-2 gap-3 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
           <div className="flex justify-between"><span className="text-muted-foreground">Version</span><span className="font-medium">v1.0.0</span></div>
           <div className="flex justify-between"><span className="text-muted-foreground">Database</span><span className="font-medium">SQLite (persistent)</span></div>
           <div className="flex justify-between"><span className="text-muted-foreground">Platform</span><span className="font-medium">Railway</span></div>

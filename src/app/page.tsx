@@ -4,18 +4,26 @@ import { useState } from 'react';
 import { ChatInterface } from '@/components/chat-interface';
 import { DesktopSidebar } from '@/components/desktop-sidebar';
 import { HistorySheet } from '@/components/history-sheet';
-import { Menu, RotateCcw } from 'lucide-react';
+import { Menu, RotateCcw, BookOpen } from 'lucide-react';
 import { useAlaStore } from '@/lib/store';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from '@/components/ui/sheet';
 
 export default function Home() {
   const [showHistory, setShowHistory] = useState(false);
+  const [showSources, setShowSources] = useState(false);
   const { messages, clearMessages } = useAlaStore();
 
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#faf8f4' }}>
       {/* Mobile header */}
       <header
-        className="flex items-center justify-between px-4 h-14 sticky top-0 z-40 lg:hidden"
+        className="flex items-center justify-between px-3 sm:px-4 h-14 sticky top-0 z-40 lg:hidden"
         style={{
           background: 'rgba(250,248,244,0.95)',
           borderBottom: '1px solid #e0dbd2',
@@ -24,7 +32,7 @@ export default function Home() {
       >
         <button
           onClick={() => setShowHistory(true)}
-          className="w-9 h-9 flex items-center justify-center rounded-lg transition-colors hover:bg-border"
+          className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-border"
           style={{ color: '#7a7065' }}
         >
           <Menu className="w-5 h-5" />
@@ -36,17 +44,24 @@ export default function Home() {
           style={{ width: 32, height: 32, borderRadius: 7, objectFit: 'cover' }}
         />
 
-        {messages.length > 0 ? (
+        <div className="flex items-center gap-0.5">
           <button
-            onClick={clearMessages}
-            className="w-9 h-9 flex items-center justify-center rounded-lg transition-colors hover:bg-border"
-            style={{ color: '#9a9388' }}
+            onClick={() => setShowSources(true)}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-border"
+            style={{ color: '#2a7470' }}
           >
-            <RotateCcw className="w-4 h-4" />
+            <BookOpen className="w-4 h-4" />
           </button>
-        ) : (
-          <div className="w-9 h-9" />
-        )}
+          {messages.length > 0 && (
+            <button
+              onClick={clearMessages}
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors hover:bg-border"
+              style={{ color: '#9a9388' }}
+            >
+              <RotateCcw className="w-4 h-4" />
+            </button>
+          )}
+        </div>
       </header>
 
       {/* Main */}
@@ -66,6 +81,17 @@ export default function Home() {
       </div>
 
       <HistorySheet open={showHistory} onClose={() => setShowHistory(false)} />
+
+      {/* Mobile Sources Sheet */}
+      <Sheet open={showSources} onOpenChange={setShowSources}>
+        <SheetContent side="right" className="w-[85vw] max-w-sm p-0" style={{ background: '#faf8f4' }}>
+          <SheetHeader className="sr-only">
+            <SheetTitle>Sources</SheetTitle>
+            <SheetDescription>Corpus statistics and navigation</SheetDescription>
+          </SheetHeader>
+          <DesktopSidebar />
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
