@@ -12,7 +12,7 @@ const openrouter = createOpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
 });
 
-const model = openrouter('anthropic/claude-3.5-sonnet');
+const model = openrouter('meta-llama/llama-3.3-70b-instruct');
 
 export async function POST(req: Request) {
   const body = await req.json();
