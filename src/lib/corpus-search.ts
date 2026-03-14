@@ -17,6 +17,7 @@ import muslimData from '@/data/corpus/hadith-muslim.json';
 import bibleData from '@/data/corpus/bible.json';
 import torahData from '@/data/corpus/torah.json';
 import secularData from '@/data/corpus/secular.json';
+import salahGuideData from '@/data/corpus/salah-guide.json';
 
 // Surah name aliases for Arabic → chapter number normalization
 // Enables queries like "Surat Al-Ahzab verse 72" to match "Quran 33:72"
@@ -164,7 +165,7 @@ function normalizeQuery(query: string): string {
   return normalized;
 }
 
-export type SourceType = 'quran' | 'hadith_bukhari' | 'hadith_muslim' | 'bible' | 'torah' | 'secular';
+export type SourceType = 'quran' | 'hadith_bukhari' | 'hadith_muslim' | 'bible' | 'torah' | 'secular' | 'islamic_knowledge';
 
 export interface SearchResult {
   id: string;
@@ -221,6 +222,7 @@ function ensureInitialized() {
   engines.bible = initSearchEngine('bible', bibleData as any);
   engines.torah = initSearchEngine('torah', torahData as any);
   engines.secular = initSearchEngine('secular', secularData as any);
+  engines.islamic_knowledge = initSearchEngine('islamic_knowledge', salahGuideData as any);
   
   initialized = true;
   console.log(`[Corpus] Initialized in ${Date.now() - start}ms`);
@@ -230,17 +232,17 @@ function ensureInitialized() {
 export function getSourcesForPerspective(perspective: string): SourceType[] {
   switch (perspective) {
     case 'islam':
-      return ['quran', 'hadith_bukhari', 'hadith_muslim'];
+      return ['quran', 'hadith_bukhari', 'hadith_muslim', 'islamic_knowledge'];
     case 'christianity':
       return ['bible'];
     case 'judaism':
       return ['torah'];
     case 'abrahamic':
-      return ['quran', 'bible', 'torah'];
+      return ['quran', 'bible', 'torah', 'islamic_knowledge'];
     case 'secular':
       return ['secular'];
     case 'mixed':
-      return ['quran', 'hadith_bukhari', 'hadith_muslim', 'bible', 'torah', 'secular'];
+      return ['quran', 'hadith_bukhari', 'hadith_muslim', 'bible', 'torah', 'secular', 'islamic_knowledge'];
     default:
       return [];
   }
